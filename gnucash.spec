@@ -35,7 +35,6 @@ BuildRequires: gtkhtml-3.8-compat-devel
 BuildRequires: libgnomeprintui-devel
 BuildRequires: readline-devel
 BuildRequires: libtermcap-devel
-BuildRequires: libunicode-devel
 BuildRequires: libxml-devel
 BuildRequires: popt-devel
 BuildRequires: python-devel >= 2.3
