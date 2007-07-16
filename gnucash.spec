@@ -31,7 +31,7 @@ Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 #BuildRequires: guile-lib
 BuildRequires: g-wrap-devel >= %{gwrap_req_version}
-BuildRequires: goffice21-devel >= 0.0.4
+BuildRequires: goffice-devel >= 0.4
 BuildRequires: libgtkhtml-3.14-devel
 BuildRequires: readline-devel
 BuildRequires: libtermcap-devel
