@@ -1,12 +1,13 @@
 %define lib_major 0
-%define lib_name %mklibname %{name} %{lib_major}
+%define libname %mklibname %{name} %{lib_major}
+%define libnamedev %mklibname -d %{name}
 
 %define gwrap_req_version 1.9.6-6mdv
-%define doc_version 2.0.1
+%define doc_version 2.2.0
 
 Name: gnucash
 Summary: GnuCash is an application to keep track of your finances
-Version: 2.0.5
+Version: 2.2.0
 Release: %mkrel 1
 License: GPL
 Group: Office
@@ -24,15 +25,14 @@ Requires: umb-scheme >= 3.2-17mdk
 Requires: g-wrap >= %{gwrap_req_version}
 #Requires: guile-lib
 Requires: python >= 2.3
-Requires: %{lib_name} >= %{version}-%{release}
+Requires: %{libname} >= %{version}-%{release}
 Requires: yelp
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 #BuildRequires: guile-lib
 BuildRequires: g-wrap-devel >= %{gwrap_req_version}
 BuildRequires: goffice21-devel >= 0.0.4
-BuildRequires: gtkhtml-3.8-compat-devel
-BuildRequires: libgnomeprintui-devel
+BuildRequires: libgtkhtml-3.14-devel
 BuildRequires: readline-devel
 BuildRequires: libtermcap-devel
 BuildRequires: libxml-devel
@@ -91,23 +91,23 @@ GnuCash package. Install this package if you want to
 import HBCI files.
 
 
-%package -n %{lib_name}-devel
+%package -n %{libnamedev}
 Group:	Development/C
 Summary: Libraries needed to develop for gnucash
-Requires: %{lib_name} = %{version}-%{release}
+Requires: %{libname} = %{version}-%{release}
 Provides: %{name}-devel = %{version}-%{release}
 Provides: lib%{name}-devel = %{version}-%{release}
-Obsoletes: %{name}-devel
+Obsoletes: %{name}-devel %mklibname -d %name 0
 
 
-%description -n %{lib_name}-devel
+%description -n %{libnamedev}
 Libraries needed to develop for gnucash.
 
-%package -n %{lib_name}
+%package -n %{libname}
 Summary:        Libraries for gnucash
 Group:          System/Libraries
 
-%description -n %{lib_name}
+%description -n %{libname}
 This package provides libraries to use gnucash.
 
 
@@ -142,8 +142,6 @@ cd gnucash-docs-%{doc_version}
 %makeinstall_std
 cd ..
 
-# multiarch support
-%multiarch_binaries $RPM_BUILD_ROOT%{_bindir}/gnucash-config
 
 rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 find %buildroot -name \*.la|xargs chmod 644
@@ -196,47 +194,40 @@ desktop-file-install --vendor="" \
 %clean_scrollkeeper
 %clean_desktop_database
 
-%post -n %{lib_name} -p /sbin/ldconfig
-%postun -n %{lib_name} -p /sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
-%post -n %{lib_name}-devel
+%post -n %{libnamedev}
 if [ "$1" = "1" ]; then 
   %{__install_info} %{_infodir}/%{name}-design.info.bz2 %{_infodir}/dir --section="Miscellaneous" --entry="* Gnucash: (gnucash-design).             Gnucash design."
 fi
 
-%postun -n %{lib_name}-devel
+%postun -n %{libnamedev}
 if [ "$1" = "0" ]; then
   %{__install_info} --delete %{_infodir}/%{name}-design.info.bz2 %{_infodir}/dir --section="Miscellaneous" --entry="* Gnucash: (gnucash-design).             Gnucash design."
 fi
 
-%files -n %{lib_name}-devel
+%files -n %{libnamedev}
 %defattr(-,root,root)
 %{_infodir}/*
 %{_bindir}/gnucash-make-guids
-%{_bindir}/gnucash-config
-%multiarch %{multiarch_bindir}/gnucash-config
-%{_libdir}/libcore-utils.so
 %{_libdir}/libgnc-backend-file-utils.so
-%{_libdir}/libgncgnome.so
-%{_libdir}/libgncmodule.so
-%{_libdir}/libgncqof.so
-%{_libdir}/libgw-core-utils.so
-%{_libdir}/libgw-gnc.so
+%_libdir/libgnc-business-ledger.so
+%_libdir/libgnc-core-utils.so
+%_libdir/libgnc-gnome.so
+%_libdir/libgnc-module.so
+%_libdir/libgnc-qof.so
 %{_includedir}/gnucash
-%{_datadir}/aclocal/*
 
-%files -n %{lib_name}
+%files -n %{libname}
 %defattr(-, root, root)
-%_libdir/libcore-utils.so.0*
 %_libdir/libgnc-backend-file-utils.so.0*
-%_libdir/libgncgnome.so.0*
-%_libdir/libgncmodule.so.0*
-%_libdir/libgncqof.so.1*
-%_libdir/libgw-core-utils.so.0*
-%_libdir/libgw-gnc.so.0*
-# these are unversioned, bad gnucash developers
-%{_libdir}/libgnc-backend-file.so
-%{_libdir}/libgncqof-backend-qsf.so
+%_libdir/libgnc-business-ledger.so.0*
+%_libdir/libgnc-core-utils.so.0*
+%_libdir/libgnc-gnome.so.0*
+%_libdir/libgnc-module.so.0*
+%_libdir/libgnc-qof.so.1*
+
 
 %files -f %{name}.lang
 %defattr(-,root,root)
@@ -277,7 +268,7 @@ fi
 %{_datadir}/%{name}/accounts
 %{_datadir}/%{name}/guile-modules
 %{_datadir}/%{name}/glade
-%_datadir/pixmaps/gnucash-icon.png
+%_datadir/pixmaps/gnucash-icon*
 %_datadir/xml/gnucash/
 %doc %{_datadir}/%{name}/doc
 %{_datadir}/%{name}/scm
