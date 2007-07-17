@@ -12,9 +12,6 @@ Release: %mkrel 1
 License: GPL
 Group: Office
 Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
-Source1: gnucash-48.png
-Source2: gnucash-32.png
-Source3: gnucash-16.png
 Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 URL: http://www.gnucash.org
@@ -157,9 +154,11 @@ done
 mkdir -p $RPM_BUILD_ROOT/%{_iconsdir}
 mkdir -p $RPM_BUILD_ROOT/%{_liconsdir}
 mkdir -p $RPM_BUILD_ROOT/%{_miconsdir}
-cp %{SOURCE1} $RPM_BUILD_ROOT/%{_liconsdir}/%{name}.png
-cp %{SOURCE2} $RPM_BUILD_ROOT/%{_iconsdir}/%{name}.png
-cp %{SOURCE3} $RPM_BUILD_ROOT/%{_miconsdir}/%{name}.png
+ln -s %_datadir/pixmaps/gnucash-icon-48x48.png $RPM_BUILD_ROOT/%{_liconsdir}/%{name}.png
+ln -s %_datadir/pixmaps/gnucash-icon-32x32.png $RPM_BUILD_ROOT/%{_iconsdir}/%{name}.png
+ln -s %_datadir/pixmaps/gnucash-icon-16x16.png $RPM_BUILD_ROOT/%{_miconsdir}/%{name}.png
+
+
 
 # Menu entry 
 mkdir -p $RPM_BUILD_ROOT/%{_menudir}
@@ -268,7 +267,9 @@ fi
 %{_datadir}/%{name}/accounts
 %{_datadir}/%{name}/guile-modules
 %{_datadir}/%{name}/glade
-%_datadir/pixmaps/gnucash-icon*
+%_datadir/pixmaps/gnucash-icon-16x16.png
+%_datadir/pixmaps/gnucash-icon-32x32.png
+%_datadir/pixmaps/gnucash-icon-48x48.png
 %_datadir/xml/gnucash/
 %doc %{_datadir}/%{name}/doc
 %{_datadir}/%{name}/scm
