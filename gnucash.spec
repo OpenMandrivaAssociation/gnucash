@@ -2,13 +2,12 @@
 %define libname %mklibname %{name} %{lib_major}
 %define libnamedev %mklibname -d %{name}
 
-%define gwrap_req_version 1.9.6-6mdv
 %define doc_version 2.2.0
 
 Name: gnucash
 Summary: GnuCash is an application to keep track of your finances
 Version: 2.2.0
-Release: %mkrel 1
+Release: %mkrel 2
 License: GPL
 Group: Office
 Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
@@ -16,18 +15,14 @@ Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 URL: http://www.gnucash.org
 
-# g-wrap must be regenerated when guile is
 Requires: guile >= 1.6
 Requires: umb-scheme >= 3.2-17mdk
-Requires: g-wrap >= %{gwrap_req_version}
-#Requires: guile-lib
 Requires: python >= 2.3
 Requires: %{libname} >= %{version}-%{release}
 Requires: yelp
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
-#BuildRequires: guile-lib
-BuildRequires: g-wrap-devel >= %{gwrap_req_version}
+BuildRequires: guile-devel
 BuildRequires: goffice-devel >= 0.4
 BuildRequires: libgtkhtml-3.14-devel
 BuildRequires: readline-devel
@@ -48,7 +43,7 @@ BuildRequires: intltool
 BuildRequires: automake1.9
 BuildRequires: desktop-file-utils
 #disable requires in private shared libraries
-%define _requires_exceptions devel.libgncmod-[^[:space:]].\\|libgnc-app\\|libgw-engine\\|libgw-kvp
+%define _requires_exceptions devel.libgncmod-[^[:space:]].\\|libgnc-app
 
 %description
 GnuCash is a personal finance manager. A check-book like
@@ -154,9 +149,9 @@ done
 mkdir -p $RPM_BUILD_ROOT/%{_iconsdir}
 mkdir -p $RPM_BUILD_ROOT/%{_liconsdir}
 mkdir -p $RPM_BUILD_ROOT/%{_miconsdir}
-ln -s %_datadir/pixmaps/gnucash-icon-48x48.png $RPM_BUILD_ROOT/%{_liconsdir}/%{name}.png
-ln -s %_datadir/pixmaps/gnucash-icon-32x32.png $RPM_BUILD_ROOT/%{_iconsdir}/%{name}.png
-ln -s %_datadir/pixmaps/gnucash-icon-16x16.png $RPM_BUILD_ROOT/%{_miconsdir}/%{name}.png
+ln -s %_datadir/pixmaps/gnucash-icon-48x48.png $RPM_BUILD_ROOT/%{_liconsdir}/%{name}-icon.png
+ln -s %_datadir/pixmaps/gnucash-icon-32x32.png $RPM_BUILD_ROOT/%{_iconsdir}/%{name}-icon.png
+ln -s %_datadir/pixmaps/gnucash-icon-16x16.png $RPM_BUILD_ROOT/%{_miconsdir}/%{name}-icon.png
 
 
 
