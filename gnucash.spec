@@ -7,16 +7,18 @@
 Name: gnucash
 Summary: GnuCash is an application to keep track of your finances
 Version: 2.2.1
-Release: %mkrel 2
+Release: %mkrel 3
 License: GPL
 Group: Office
 Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
+# (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
+Patch0: gnucash-quiet.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 URL: http://www.gnucash.org
 
 Requires: guile >= 1.6
-Requires: umb-scheme >= 3.2-17mdk
+Requires: slib
 Requires: python >= 2.3
 Requires: %{libname} >= %{version}-%{release}
 Requires: yelp
@@ -42,6 +44,7 @@ BuildRequires: db1-devel
 BuildRequires: intltool
 BuildRequires: automake1.9
 BuildRequires: desktop-file-utils
+BuildRequires: slib
 #disable requires in private shared libraries
 %define _requires_exceptions devel.libgncmod-[^[:space:]].\\|libgnc-app
 
@@ -105,15 +108,10 @@ This package provides libraries to use gnucash.
 
 %prep
 %setup -q -a 4
-#libtoolize --force
-#aclocal-1.9 -I macros
-#automake-1.9
-#autoconf
+%patch0 -p1 -b .quiet
 
 %build
-#gw our libtool is older than the bundled one
-%define __libtoolize true
-%configure2_5x --enable-gui --enable-hbci --enable-ofx --disable-error-on-warning --enable-sql
+%configure2_5x --enable-gui --enable-hbci --enable-ofx --disable-error-on-warning --enable-sql 
 
 cd gnucash-docs-%{doc_version}
 %configure --localstatedir=/var/lib
@@ -156,12 +154,6 @@ ln -s %_datadir/pixmaps/gnucash-icon-16x16.png $RPM_BUILD_ROOT/%{_miconsdir}/%{n
 
 
 # Menu entry 
-mkdir -p $RPM_BUILD_ROOT/%{_menudir}
-cat >$RPM_BUILD_ROOT/%{_menudir}/%{name} <<EOF
-?package(%{name}): command="%{_bindir}/%{name}" icon="%{name}.png" needs="X11" \
-section="More Applications/Finances" title="GnuCash" longtitle="GnuCash Personal finance manager" xdg="true"
-EOF
-
 desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="GTK" \
@@ -274,7 +266,6 @@ fi
 %{_iconsdir}/*.png
 %{_miconsdir}/*.png
 %{_liconsdir}/*.png
-%{_menudir}/%{name}
 %dir %{_datadir}/omf/%name-docs/
 %{_datadir}/omf/%name-docs/gnucash-guide-C.omf
 %{_datadir}/omf/%name-docs/gnucash-help-C.omf
