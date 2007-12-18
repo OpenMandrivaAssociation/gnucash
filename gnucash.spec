@@ -6,8 +6,8 @@
 
 Name: gnucash
 Summary: GnuCash is an application to keep track of your finances
-Version: 2.2.1
-Release: %mkrel 3
+Version: 2.2.2
+Release: %mkrel 1
 License: GPL
 Group: Office
 Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
@@ -24,7 +24,7 @@ Requires: yelp
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 BuildRequires: guile-devel
-BuildRequires: goffice0-devel >= 0.4
+BuildRequires: goffice-devel >= 0.5
 BuildRequires: libgtkhtml-3.14-devel
 BuildRequires: readline-devel
 BuildRequires: libtermcap-devel
