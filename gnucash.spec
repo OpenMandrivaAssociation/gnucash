@@ -14,6 +14,7 @@ Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
 # (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
 Patch0: gnucash-quiet.patch
+BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
 URL: http://www.gnucash.org
 
 Requires: guile >= 1.6
