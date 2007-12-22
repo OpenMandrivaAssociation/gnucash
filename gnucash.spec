@@ -7,14 +7,14 @@
 Name: gnucash
 Summary: GnuCash is an application to keep track of your finances
 Version: 2.2.2
-Release: %mkrel 2
+Release: %mkrel 3
 License: GPL
 Group: Office
 Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
 # (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
 Patch0: gnucash-quiet.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-buildroot
+Patch1: gnucash-2.2.2-goffice0.6.patch
 URL: http://www.gnucash.org
 
 Requires: guile >= 1.6
@@ -109,6 +109,9 @@ This package provides libraries to use gnucash.
 %prep
 %setup -q -a 4
 %patch0 -p1 -b .quiet
+%patch1 -p1
+aclocal -I macros
+autoconf
 
 %build
 %configure2_5x --enable-gui --enable-hbci --enable-ofx --disable-error-on-warning --enable-sql 
