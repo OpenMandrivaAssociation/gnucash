@@ -6,15 +6,14 @@
 
 Name: gnucash
 Summary: GnuCash is an application to keep track of your finances
-Version: 2.2.2
-Release: %mkrel 3
+Version: 2.2.3
+Release: %mkrel 1
 License: GPL
 Group: Office
 Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
 # (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
 Patch0: gnucash-quiet.patch
-Patch1: gnucash-2.2.2-goffice0.6.patch
 URL: http://www.gnucash.org
 
 Requires: guile >= 1.6
@@ -35,7 +34,7 @@ BuildRequires: python-devel >= 2.3
 BuildRequires: scrollkeeper >= 0.3.4
 BuildRequires: libxslt-proc
 BuildRequires: libofx-devel >= 0.7.0
-BuildRequires: libaqbanking-devel >= 1.0.0
+BuildRequires: libaqbanking-devel < 2.9
 BuildRequires: libktoblzcheck-devel
 BuildRequires: postgresql-devel
 BuildRequires: gettext-devel
@@ -109,9 +108,6 @@ This package provides libraries to use gnucash.
 %prep
 %setup -q -a 4
 %patch0 -p1 -b .quiet
-%patch1 -p1
-aclocal -I macros
-autoconf
 
 %build
 %configure2_5x --enable-gui --enable-hbci --enable-ofx --disable-error-on-warning --enable-sql 
@@ -146,15 +142,6 @@ echo "%lang($(basename $omf|sed -e s/.*-// -e s/.omf//)) $(echo $omf|sed -e s!%b
 done
 
 
-# Icons
-mkdir -p $RPM_BUILD_ROOT/%{_iconsdir}
-mkdir -p $RPM_BUILD_ROOT/%{_liconsdir}
-mkdir -p $RPM_BUILD_ROOT/%{_miconsdir}
-ln -s %_datadir/pixmaps/gnucash-icon-48x48.png $RPM_BUILD_ROOT/%{_liconsdir}/%{name}-icon.png
-ln -s %_datadir/pixmaps/gnucash-icon-32x32.png $RPM_BUILD_ROOT/%{_iconsdir}/%{name}-icon.png
-ln -s %_datadir/pixmaps/gnucash-icon-16x16.png $RPM_BUILD_ROOT/%{_miconsdir}/%{name}-icon.png
-
-
 
 # Menu entry 
 desktop-file-install --vendor="" \
@@ -162,7 +149,6 @@ desktop-file-install --vendor="" \
   --add-category="GTK" \
   --add-category="X-MandrivaLinux-MoreApplications-Finances" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
-
 
 
 %clean
@@ -174,6 +160,7 @@ desktop-file-install --vendor="" \
 %{update_menus}
 %update_desktop_database
 %update_scrollkeeper
+%update_icon_cache hicolor
 
 %preun
 %preun_uninstall_gconf_schemas %schemas
@@ -182,6 +169,7 @@ desktop-file-install --vendor="" \
 %{clean_menus}
 %clean_scrollkeeper
 %clean_desktop_database
+%clean_icon_cache hicolor
 
 %post -n %{libname} -p /sbin/ldconfig
 %postun -n %{libname} -p /sbin/ldconfig
@@ -257,18 +245,13 @@ fi
 %{_datadir}/%{name}/accounts
 %{_datadir}/%{name}/guile-modules
 %{_datadir}/%{name}/glade
-%_datadir/pixmaps/gnucash-icon-16x16.png
-%_datadir/pixmaps/gnucash-icon-32x32.png
-%_datadir/pixmaps/gnucash-icon-48x48.png
+%_datadir/icons/hicolor/*/apps/gnucash*
 %_datadir/xml/gnucash/
 %doc %{_datadir}/%{name}/doc
 %{_datadir}/%{name}/scm
 %{_mandir}/*/*
 %doc AUTHORS COPYING HACKING NEWS README*
 %doc doc/README.german doc/README.francais doc/guile-hackers.txt
-%{_iconsdir}/*.png
-%{_miconsdir}/*.png
-%{_liconsdir}/*.png
 %dir %{_datadir}/omf/%name-docs/
 %{_datadir}/omf/%name-docs/gnucash-guide-C.omf
 %{_datadir}/omf/%name-docs/gnucash-help-C.omf
