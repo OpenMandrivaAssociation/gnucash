@@ -10,6 +10,7 @@ Version: 2.2.3
 Release: %mkrel 2
 License: GPL
 Group: Office
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
 # (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
