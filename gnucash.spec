@@ -5,7 +5,7 @@
 %define doc_version 2.2.0
 
 Name: gnucash
-Summary: GnuCash is an application to keep track of your finances
+Summary: Application to keep track of your finances
 Version: 2.2.3
 Release: %mkrel 2
 License: GPL
