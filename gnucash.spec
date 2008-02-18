@@ -26,7 +26,7 @@ Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 BuildRequires: guile-devel
 BuildRequires: goffice-devel >= 0.5
-BuildRequires: libgtkhtml-3.14-devel
+BuildRequires: gtkhtml-3.14-devel
 BuildRequires: readline-devel
 BuildRequires: libtermcap-devel
 BuildRequires: libxml-devel
