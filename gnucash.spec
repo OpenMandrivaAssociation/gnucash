@@ -6,8 +6,8 @@
 
 Name: gnucash
 Summary: Application to keep track of your finances
-Version: 2.2.3
-Release: %mkrel 3
+Version: 2.2.4
+Release: %mkrel 1
 License: GPL
 Group: Office
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
