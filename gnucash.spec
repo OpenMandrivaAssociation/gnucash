@@ -7,7 +7,7 @@
 Name: gnucash
 Summary: Application to keep track of your finances
 Version: 2.2.4
-Release: %mkrel 1
+Release: %mkrel 2
 License: GPL
 Group: Office
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -15,6 +15,7 @@ Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
 # (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
 Patch0: gnucash-quiet.patch
+Patch1: gnucash-2.2.4-aqbanking3.patch
 URL: http://www.gnucash.org
 
 Requires: guile >= 1.6
@@ -35,7 +36,7 @@ BuildRequires: python-devel >= 2.3
 BuildRequires: scrollkeeper >= 0.3.4
 BuildRequires: libxslt-proc
 BuildRequires: libofx-devel >= 0.7.0
-BuildRequires: libaqbanking-devel < 2.9
+BuildRequires: libaqbanking-devel >= 3
 BuildRequires: libktoblzcheck-devel
 BuildRequires: postgresql-devel
 BuildRequires: gettext-devel
@@ -78,7 +79,7 @@ Summary: Enables HBCI importing in GnuCash
 Group: Office
 Requires: gnucash = %{version}-%{release}
 # only require the wizard, it will pull aqhbci package too 
-Requires: aqhbci-qt-tools
+Requires: aqbanking-qt3
  
 %description hbci
 This package adds HBCI file import support to the base
@@ -109,6 +110,10 @@ This package provides libraries to use gnucash.
 %prep
 %setup -q -a 4
 %patch0 -p1 -b .quiet
+%patch1 -p1 -b .aqbanking3
+aclocal -I macros
+autoconf
+automake
 
 %build
 %configure2_5x --enable-gui --enable-hbci --enable-ofx --disable-error-on-warning --enable-sql 
@@ -257,19 +262,23 @@ fi
 %{_datadir}/omf/%name-docs/gnucash-guide-C.omf
 %{_datadir}/omf/%name-docs/gnucash-help-C.omf
 %exclude %{_libdir}/gnucash/libgncmod-ofx*
-%exclude %{_libdir}/gnucash/libgncmod-hbci*
-%exclude %{_datadir}/gnucash/glade/hbci*
+%exclude %{_libdir}/gnucash/libgncmod-aqbanking*
+%exclude %{_datadir}/gnucash/glade/aqbanking*
+%exclude %{_datadir}/gnucash/ui/gnc-plugin-aqbanking-ui.xml
+%exclude %{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
 
 %files ofx
 %defattr(-,root,root)
 %doc doc/README.OFX
 %{_libdir}/gnucash/libgncmod-ofx*
+%{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
 
 %files hbci
 %defattr(-,root,root)
 %doc doc/README.HBCI
-%{_libdir}/gnucash/libgncmod-hbci*
-%{_datadir}/gnucash/glade/hbci*
+%{_libdir}/gnucash/libgncmod-aqbanking*
+%{_datadir}/gnucash/glade/aqbanking*
+%{_datadir}/gnucash/ui/gnc-plugin-aqbanking-ui.xml
 
 %files sql
 %defattr(-,root,root)
