@@ -30,7 +30,6 @@ BuildRequires: goffice-devel >= 0.5
 BuildRequires: gtkhtml-3.14-devel
 BuildRequires: readline-devel
 BuildRequires: libtermcap-devel
-BuildRequires: libxml-devel
 BuildRequires: popt-devel
 BuildRequires: python-devel >= 2.3
 BuildRequires: scrollkeeper >= 0.3.4
