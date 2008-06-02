@@ -17,6 +17,7 @@ Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.
 Patch0: gnucash-quiet.patch
 Patch1: gnucash-2.2.4-aqbanking3.patch
 Patch2: gnucash-2.2.5-underlinking-file-backend.patch
+Patch3: gnucash-2.2.5-underlinking-gnome-utils.patch
 URL: http://www.gnucash.org
 
 Requires: guile >= 1.6
@@ -112,6 +113,8 @@ This package provides libraries to use gnucash.
 %patch0 -p1 -b .quiet
 %patch1 -p1 -b .aqbanking3
 %patch2 -p1 -b .fix-underlinking-file-backend
+%patch3 -p1 -b .fix-underlinking-gnome-utils
+
 aclocal -I macros
 autoconf
 automake
