@@ -166,20 +166,24 @@ desktop-file-install --vendor="" \
 
 %post
 %define schemas apps_gnucash_dialog_business_common apps_gnucash_dialog_commodities apps_gnucash_dialog_common apps_gnucash_dialog_hbci apps_gnucash_dialog_prices apps_gnucash_dialog_print_checks apps_gnucash_dialog_reconcile apps_gnucash_dialog_totd apps_gnucash_general apps_gnucash_history apps_gnucash_import_generic_matcher apps_gnucash_import_qif apps_gnucash_warnings apps_gnucash_window_pages_account_tree apps_gnucash_window_pages_register apps_gnucash_dialog_scheduled_transctions
+%if %mdkversion < 200900
 %post_install_gconf_schemas %schemas
 %{update_menus}
 %update_desktop_database
 %update_scrollkeeper
 %update_icon_cache hicolor
+%endif
 
 %preun
 %preun_uninstall_gconf_schemas %schemas
 
+%if %mdkversion < 200900
 %postun
 %{clean_menus}
 %clean_scrollkeeper
 %clean_desktop_database
 %clean_icon_cache hicolor
+%endif
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
