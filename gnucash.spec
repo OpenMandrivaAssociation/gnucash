@@ -28,7 +28,7 @@ Requires: yelp
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 BuildRequires: guile-devel
-BuildRequires: goffice-devel >= 0.5
+BuildRequires: goffice0.6-devel >= 0.5
 BuildRequires: gtkhtml-3.14-devel
 BuildRequires: readline-devel
 BuildRequires: libtermcap-devel
