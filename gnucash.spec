@@ -6,8 +6,8 @@
 
 Name: gnucash
 Summary: Application to keep track of your finances
-Version: 2.2.5
-Release: %mkrel 2
+Version: 2.2.6
+Release: %mkrel 1
 License: GPLv2+
 Group: Office
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -15,7 +15,6 @@ Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
 # (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
 Patch0: gnucash-quiet.patch
-Patch1: gnucash-2.2.4-aqbanking3.patch
 Patch2: gnucash-2.2.5-underlinking-file-backend.patch
 Patch3: gnucash-2.2.5-underlinking-gnome-utils.patch
 URL: http://www.gnucash.org
@@ -42,7 +41,6 @@ BuildRequires: libktoblzcheck-devel
 BuildRequires: postgresql-devel
 BuildRequires: gettext-devel
 BuildRequires: libffi-devel
-BuildRequires: db1-devel
 BuildRequires: intltool
 BuildRequires: automake1.9
 BuildRequires: desktop-file-utils
@@ -111,7 +109,6 @@ This package provides libraries to use gnucash.
 %prep
 %setup -q -a 4
 %patch0 -p1 -b .quiet
-%patch1 -p1 -b .aqbanking3
 %patch2 -p1 -b .fix-underlinking-file-backend
 %patch3 -p1 -b .fix-underlinking-gnome-utils
 
