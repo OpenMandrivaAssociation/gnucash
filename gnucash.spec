@@ -6,7 +6,7 @@
 
 Name: gnucash
 Summary: Application to keep track of your finances
-Version: 2.2.6
+Version: 2.2.7
 Release: %mkrel 1
 License: GPLv2+
 Group: Office
@@ -113,6 +113,7 @@ This package provides libraries to use gnucash.
 %patch3 -p1 -b .fix-underlinking-gnome-utils
 
 aclocal -I macros
+libtoolize --copy --force
 autoconf
 automake
 
