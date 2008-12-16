@@ -6,17 +6,15 @@
 
 Name: gnucash
 Summary: Application to keep track of your finances
-Version: 2.2.7
-Release: %mkrel 2
+Version: 2.2.8
+Release: %mkrel 1
 License: GPLv2+
 Group: Office
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
+Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.lzma
 Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
 # (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
 Patch0: gnucash-quiet.patch
-Patch2: gnucash-2.2.5-underlinking-file-backend.patch
-Patch3: gnucash-2.2.5-underlinking-gnome-utils.patch
 URL: http://www.gnucash.org
 
 Requires: guile >= 1.6
@@ -27,7 +25,7 @@ Requires: yelp
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 BuildRequires: guile-devel
-BuildRequires: goffice0.6-devel >= 0.5
+BuildRequires: goffice-devel >= 0.7
 BuildRequires: gtkhtml-3.14-devel
 BuildRequires: readline-devel
 BuildRequires: libtermcap-devel
@@ -109,8 +107,6 @@ This package provides libraries to use gnucash.
 %prep
 %setup -q -a 4
 %patch0 -p1 -b .quiet
-%patch2 -p1 -b .fix-underlinking-file-backend
-%patch3 -p1 -b .fix-underlinking-gnome-utils
 
 aclocal -I macros
 libtoolize --copy --force
@@ -155,7 +151,6 @@ done
 desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="GTK" \
-  --add-category="X-MandrivaLinux-MoreApplications-Finances" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
 
 
