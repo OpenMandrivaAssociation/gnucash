@@ -6,7 +6,7 @@
 
 Name: gnucash
 Summary: Application to keep track of your finances
-Version: 2.2.8
+Version: 2.2.9
 Release: %mkrel 1
 License: GPLv2+
 Group: Office
