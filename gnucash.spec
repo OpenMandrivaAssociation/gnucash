@@ -114,7 +114,7 @@ autoconf
 automake
 
 %build
-%configure2_5x --enable-gui --enable-hbci --enable-ofx --disable-error-on-warning --enable-sql 
+%configure2_5x --enable-gui --enable-hbci --enable-ofx --disable-error-on-warning --enable-sql --disable-schemas-install
 
 cd gnucash-docs-%{doc_version}
 %configure --localstatedir=/var/lib
