@@ -24,6 +24,7 @@ Requires: %{libname} >= %{version}-%{release}
 Requires: yelp
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
+Suggests: perl-Finance-Quote
 BuildRequires: guile-devel
 BuildRequires: goffice-devel >= 0.7
 BuildRequires: gtkhtml-3.14-devel
