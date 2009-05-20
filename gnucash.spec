@@ -7,7 +7,7 @@
 Name: gnucash
 Summary: Application to keep track of your finances
 Version: 2.2.9
-Release: %mkrel 1
+Release: %mkrel 2
 License: GPLv2+
 Group: Office
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -15,6 +15,8 @@ Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.lzma
 Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
 # (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
 Patch0: gnucash-quiet.patch
+#gw rediffed from svn
+Patch1: gnucash-2.2.9-fix-build-with-new-goffice.patch
 URL: http://www.gnucash.org
 
 Requires: guile >= 1.6
@@ -108,6 +110,7 @@ This package provides libraries to use gnucash.
 %prep
 %setup -q -a 4
 %patch0 -p1 -b .quiet
+%patch1 -p1
 
 aclocal -I macros
 libtoolize --copy --force
