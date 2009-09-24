@@ -7,7 +7,7 @@
 Name: gnucash
 Summary: Application to keep track of your finances
 Version: 2.2.9
-Release: %mkrel 3
+Release: %mkrel 4
 License: GPLv2+
 Group: Office
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -17,7 +17,7 @@ Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.
 Patch0: gnucash-quiet.patch
 #gw rediffed from svn
 Patch1: gnucash-2.2.9-fix-build-with-new-goffice.patch
-URL: http://www.gnucash.org
+URL: http://www.gnucash.org/
 
 Requires: guile >= 1.6
 Requires: slib
@@ -110,7 +110,7 @@ This package provides libraries to use gnucash.
 %prep
 %setup -q -a 4
 %patch0 -p1 -b .quiet
-%patch1 -p1
+%patch1 -p1 -b .goffice
 
 aclocal -I macros
 libtoolize --copy --force
