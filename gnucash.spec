@@ -43,6 +43,7 @@ BuildRequires: postgresql-devel
 BuildRequires: gettext-devel
 BuildRequires: libffi-devel
 BuildRequires: libgnomeui2-devel
+BuildRequires: libglade2.0-devel
 BuildRequires: intltool
 BuildRequires: automake1.9
 BuildRequires: desktop-file-utils
