@@ -7,7 +7,7 @@
 Name: gnucash
 Summary: Application to keep track of your finances
 Version: 2.2.9
-Release: %mkrel 4
+Release: %mkrel 5
 License: GPLv2+
 Group: Office
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -81,7 +81,7 @@ Summary: Enables HBCI importing in GnuCash
 Group: Office
 Requires: gnucash = %{version}-%{release}
 # only require the wizard, it will pull aqhbci package too 
-Requires: aqbanking-qt3
+Requires: aqbanking-qt4
  
 %description hbci
 This package adds HBCI file import support to the base
