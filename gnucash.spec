@@ -7,7 +7,7 @@
 Name: gnucash
 Summary: Application to keep track of your finances
 Version: 2.2.9
-Release: %mkrel 6
+Release: %mkrel 7
 License: GPLv2+
 Group: Office
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -45,7 +45,7 @@ BuildRequires: libffi-devel
 BuildRequires: libgnomeui2-devel
 BuildRequires: libglade2.0-devel
 BuildRequires: intltool
-BuildRequires: automake1.9
+BuildRequires: automake
 BuildRequires: desktop-file-utils
 BuildRequires: slib
 #disable requires in private shared libraries
