@@ -3,7 +3,7 @@
 %define libnamedev %mklibname -d %{name}
 
 %define doc_version 2.2.0
-
+%define build_hbci 0
 Name: gnucash
 Summary: Application to keep track of your finances
 Version: 2.2.9
@@ -37,7 +37,6 @@ BuildRequires: python-devel >= 2.3
 BuildRequires: scrollkeeper >= 0.3.4
 BuildRequires: libxslt-proc
 BuildRequires: libofx-devel >= 0.7.0
-BuildRequires: libaqbanking-devel >= 3
 BuildRequires: libktoblzcheck-devel
 BuildRequires: postgresql-devel
 BuildRequires: gettext-devel
@@ -76,18 +75,22 @@ Requires: gnucash = %{version}-%{release}
 %description sql
 This package adds PostgreSQL experimental backend for GnuCash.
 
+%if %build_hbci
 %package hbci
 Summary: Enables HBCI importing in GnuCash
 Group: Office
 Requires: gnucash = %{version}-%{release}
+BuildRequires: libaqbanking-devel >= 3
 # only require the wizard, it will pull aqhbci package too 
+#gw it really required qt3-wizard which wasn't included in aqbanking for a while
 Requires: aqbanking-qt4
+
  
 %description hbci
 This package adds HBCI file import support to the base
 GnuCash package. Install this package if you want to
 import HBCI files.
-
+%endif
 
 %package -n %{libnamedev}
 Group:	Development/C
@@ -120,7 +123,11 @@ autoconf
 automake
 
 %build
-%configure2_5x --enable-gui --enable-hbci --enable-ofx --disable-error-on-warning --enable-sql --disable-schemas-install
+%configure2_5x --enable-gui  --enable-ofx --disable-error-on-warning --enable-sql --disable-schemas-install \
+%if %build_hbci
+--enable-hbci
+%endif
+
 
 cd gnucash-docs-%{doc_version}
 %configure --localstatedir=/var/lib
@@ -164,32 +171,16 @@ desktop-file-install --vendor="" \
 [ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 
 %post
-%define schemas apps_gnucash_dialog_business_common apps_gnucash_dialog_commodities apps_gnucash_dialog_common apps_gnucash_dialog_hbci apps_gnucash_dialog_prices apps_gnucash_dialog_print_checks apps_gnucash_dialog_reconcile apps_gnucash_dialog_totd apps_gnucash_general apps_gnucash_history apps_gnucash_import_generic_matcher apps_gnucash_import_qif apps_gnucash_warnings apps_gnucash_window_pages_account_tree apps_gnucash_window_pages_register apps_gnucash_dialog_scheduled_transctions
-%if %mdkversion < 200900
-%post_install_gconf_schemas %schemas
-%{update_menus}
-%update_desktop_database
-%update_scrollkeeper
-%update_icon_cache hicolor
-%endif
+%define schemas apps_gnucash_dialog_business_common apps_gnucash_dialog_commodities apps_gnucash_dialog_common apps_gnucash_dialog_prices apps_gnucash_dialog_print_checks apps_gnucash_dialog_reconcile apps_gnucash_dialog_totd apps_gnucash_general apps_gnucash_history apps_gnucash_import_generic_matcher apps_gnucash_import_qif apps_gnucash_warnings apps_gnucash_window_pages_account_tree apps_gnucash_window_pages_register apps_gnucash_dialog_scheduled_transctions
 
 %preun
 %preun_uninstall_gconf_schemas %schemas
 
-%if %mdkversion < 200900
-%postun
-%{clean_menus}
-%clean_scrollkeeper
-%clean_desktop_database
-%clean_icon_cache hicolor
+%if %build_hbci
+%preun hbci
+%preun_uninstall_gconf_schemas apps_gnucash_dialog_hbci
 %endif
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
 
 %post -n %{libnamedev}
 if [ "$1" = "1" ]; then 
@@ -228,7 +219,6 @@ fi
 %_sysconfdir/gconf/schemas/apps_gnucash_dialog_business_common.schemas
 %_sysconfdir/gconf/schemas/apps_gnucash_dialog_commodities.schemas
 %_sysconfdir/gconf/schemas/apps_gnucash_dialog_common.schemas
-%_sysconfdir/gconf/schemas/apps_gnucash_dialog_hbci.schemas
 %_sysconfdir/gconf/schemas/apps_gnucash_dialog_prices.schemas
 %_sysconfdir/gconf/schemas/apps_gnucash_dialog_print_checks.schemas
 %_sysconfdir/gconf/schemas/apps_gnucash_dialog_reconcile.schemas
@@ -274,9 +264,11 @@ fi
 %{_datadir}/omf/%name-docs/gnucash-guide-C.omf
 %{_datadir}/omf/%name-docs/gnucash-help-C.omf
 %exclude %{_libdir}/gnucash/libgncmod-ofx*
+%if %build_hbci
 %exclude %{_libdir}/gnucash/libgncmod-aqbanking*
 %exclude %{_datadir}/gnucash/glade/aqbanking*
 %exclude %{_datadir}/gnucash/ui/gnc-plugin-aqbanking-ui.xml
+%endif
 %exclude %{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
 
 %files ofx
@@ -285,12 +277,15 @@ fi
 %{_libdir}/gnucash/libgncmod-ofx*
 %{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
 
+%if %build_hbci
 %files hbci
 %defattr(-,root,root)
 %doc doc/README.HBCI
+%_sysconfdir/gconf/schemas/apps_gnucash_dialog_hbci.schemas
 %{_libdir}/gnucash/libgncmod-aqbanking*
 %{_datadir}/gnucash/glade/aqbanking*
 %{_datadir}/gnucash/ui/gnc-plugin-aqbanking-ui.xml
+%endif
 
 %files sql
 %defattr(-,root,root)
