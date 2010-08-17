@@ -3,20 +3,18 @@
 %define libnamedev %mklibname -d %{name}
 
 %define doc_version 2.2.0
-%define build_hbci 0
+%define build_hbci 1
 Name: gnucash
 Summary: Application to keep track of your finances
-Version: 2.2.9
-Release: %mkrel 7
+Version: 2.3.14
+Release: %mkrel 1
 License: GPLv2+
 Group: Office
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Source0: http://prdownloads.sourceforge.net/gnucash/%{name}-%{version}.tar.lzma
+Source0: http://sourceforge.net/projects/gnucash/files/gnucash%20%28unstable%29/%version/%name-%version.tar.bz2
 Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
 # (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
 Patch0: gnucash-quiet.patch
-#gw rediffed from svn
-Patch1: gnucash-2.2.9-fix-build-with-new-goffice.patch
 URL: http://www.gnucash.org/
 
 Requires: guile >= 1.6
@@ -27,18 +25,20 @@ Requires: yelp
 Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 Suggests: perl-Finance-Quote
+Provides: gnucash-sql
+Obsoletes: gnucash-sql <= 2.2.9
 BuildRequires: guile-devel
 BuildRequires: goffice-devel >= 0.7
-BuildRequires: gtkhtml-3.14-devel
+BuildRequires: webkitgtk-devel
 BuildRequires: readline-devel
 BuildRequires: libtermcap-devel
 BuildRequires: popt-devel
 BuildRequires: python-devel >= 2.3
 BuildRequires: scrollkeeper >= 0.3.4
 BuildRequires: libxslt-proc
+BuildRequires: dbi-devel
 BuildRequires: libofx-devel >= 0.7.0
 BuildRequires: libktoblzcheck-devel
-BuildRequires: postgresql-devel
 BuildRequires: gettext-devel
 BuildRequires: libffi-devel
 BuildRequires: libgnomeui2-devel
@@ -67,14 +67,6 @@ This package adds OFX file import support to the base
 GnuCash package. Install this package if you want to
 import OFX files.
 
-%package sql
-Summary: PostgreSQL backend for GnuCash
-Group: Office
-Requires: gnucash = %{version}-%{release}
- 
-%description sql
-This package adds PostgreSQL experimental backend for GnuCash.
-
 %if %build_hbci
 %package hbci
 Summary: Enables HBCI importing in GnuCash
@@ -83,7 +75,7 @@ Requires: gnucash = %{version}-%{release}
 BuildRequires: libaqbanking-devel >= 3
 # only require the wizard, it will pull aqhbci package too 
 #gw it really required qt3-wizard which wasn't included in aqbanking for a while
-Requires: aqbanking-qt4
+Requires: aqhbci
 
  
 %description hbci
@@ -115,22 +107,22 @@ This package provides libraries to use gnucash.
 %prep
 %setup -q -a 4
 %patch0 -p1 -b .quiet
-%patch1 -p1 -b .goffice
-
-aclocal -I macros
-libtoolize --copy --force
-autoconf
-automake
 
 %build
-%configure2_5x --enable-gui  --enable-ofx --disable-error-on-warning --enable-sql --disable-schemas-install \
+%define _disable_ld_no_undefined 1
+%configure2_5x --enable-gui  --enable-ofx \
+--disable-error-on-warning --disable-schemas-install \
+--disable-static \
+--enable-locale-specific-tax \
+--enable-dbi \
+--with-html-engine=webkit \
 %if %build_hbci
 --enable-hbci
 %endif
 
 
 cd gnucash-docs-%{doc_version}
-%configure --localstatedir=/var/lib
+%configure2_5x --localstatedir=/var/lib
 cd ..
 
 make
@@ -195,18 +187,16 @@ fi
 %files -n %{libnamedev}
 %defattr(-,root,root)
 %{_infodir}/*
+%{_bindir}/gnucash-gdb
 %{_bindir}/gnucash-make-guids
-%{_libdir}/libgnc-backend-file-utils.so
-%_libdir/libgnc-business-ledger.so
-%_libdir/libgnc-core-utils.so
-%_libdir/libgnc-gnome.so
-%_libdir/libgnc-module.so
-%_libdir/libgnc-qof.so
+%{_bindir}/gnucash-valgrind
+%_libdir/lib*.so
 %{_includedir}/gnucash
 
 %files -n %{libname}
 %defattr(-, root, root)
-%_libdir/libgnc-backend-file-utils.so.0*
+%_libdir/libgnc-backend-sql.so.0*
+%_libdir/libgnc-backend-xml-utils.so.0*
 %_libdir/libgnc-business-ledger.so.0*
 %_libdir/libgnc-core-utils.so.0*
 %_libdir/libgnc-gnome.so.0*
@@ -234,7 +224,6 @@ fi
 %config(noreplace) %{_sysconfdir}/%{name}		
 %{_bindir}/gnucash
 %{_bindir}/gnucash-bin
-%{_bindir}/gnucash-valgrind
 %{_bindir}/gnucash-env
 %{_bindir}/gnc-test-env
 %{_bindir}/gnc-fq-check
@@ -243,7 +232,6 @@ fi
 %{_bindir}/gnc-fq-update
 %{_bindir}/update-gnucash-gconf
 %_datadir/applications/%name.desktop
-%_datadir/gnucash/
 %dir %{_libdir}/gnucash
 %{_libdir}/*.la
 %{_libdir}/gnucash/*.la
@@ -251,10 +239,14 @@ fi
 %{_libdir}/gnucash/overrides
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/accounts
+%{_datadir}/%{name}/checks
 %{_datadir}/%{name}/guile-modules
 %{_datadir}/%{name}/glade
+%{_datadir}/%{name}/pixmaps
+%{_datadir}/%{name}/ui
+%{_datadir}/%{name}/gnome
+%{_datadir}/%{name}/tip_of_the_day.list
 %_datadir/icons/hicolor/*/apps/gnucash*
-%_datadir/xml/gnucash/
 %doc %{_datadir}/%{name}/doc
 %{_datadir}/%{name}/scm
 %{_mandir}/*/*
@@ -286,10 +278,4 @@ fi
 %{_datadir}/gnucash/glade/aqbanking*
 %{_datadir}/gnucash/ui/gnc-plugin-aqbanking-ui.xml
 %endif
-
-%files sql
-%defattr(-,root,root)
-%doc src/backend/postgres/README
-%{_libdir}/libgnc-backend-postgres.so
-
 
