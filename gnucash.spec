@@ -6,8 +6,8 @@
 %define build_hbci 1
 Name: gnucash
 Summary: Application to keep track of your finances
-Version: 2.3.14
-Release: %mkrel 2
+Version: 2.3.15
+Release: %mkrel 1
 License: GPLv2+
 Group: Office
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -187,7 +187,6 @@ fi
 %files -n %{libnamedev}
 %defattr(-,root,root)
 %{_infodir}/*
-%{_bindir}/gnucash-gdb
 %{_bindir}/gnucash-make-guids
 %{_bindir}/gnucash-valgrind
 %_libdir/lib*.so
@@ -223,7 +222,6 @@ fi
 %_sysconfdir/gconf/schemas/apps_gnucash_window_pages_register.schemas
 %config(noreplace) %{_sysconfdir}/%{name}		
 %{_bindir}/gnucash
-%{_bindir}/gnucash-bin
 %{_bindir}/gnucash-env
 %{_bindir}/gnc-test-env
 %{_bindir}/gnc-fq-check
