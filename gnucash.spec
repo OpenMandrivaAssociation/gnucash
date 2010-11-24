@@ -7,7 +7,7 @@
 Name: gnucash
 Summary: Application to keep track of your finances
 Version: 2.3.15
-Release: %mkrel 1
+Release: %mkrel 2
 License: GPLv2+
 Group: Office
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -158,6 +158,8 @@ desktop-file-install --vendor="" \
   --add-category="GTK" \
   --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
 
+# don't ship /usr/bin/gnc-test-env as it's only used for build and testing, this mitigates CVE-2010-3999
+rm -f %{buildroot}%{_bindir}/gnc-test-env
 
 %clean
 [ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
@@ -223,7 +225,6 @@ fi
 %config(noreplace) %{_sysconfdir}/%{name}		
 %{_bindir}/gnucash
 %{_bindir}/gnucash-env
-%{_bindir}/gnc-test-env
 %{_bindir}/gnc-fq-check
 %{_bindir}/gnc-fq-dump
 %{_bindir}/gnc-fq-helper
