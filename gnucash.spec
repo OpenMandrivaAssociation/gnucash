@@ -117,7 +117,7 @@ This package provides libraries to use gnucash.
 --enable-dbi \
 --with-html-engine=webkit \
 %if %build_hbci
---enable-hbci
+--enable-aqbanking
 %endif
 
 
