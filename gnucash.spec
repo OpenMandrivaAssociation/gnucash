@@ -6,13 +6,13 @@
 %define build_hbci 1
 Name: gnucash
 Summary: Application to keep track of your finances
-Version: 2.4.2
+Version: 2.4.3
 Release: %mkrel 1
 License: GPLv2+
 Group: Office
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-Source0: http://sourceforge.net/projects/gnucash/files/gnucash%20%28unstable%29/%version/%name-%version.tar.bz2
-Source4: http://prdownloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
+Source0: http://downloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
+Source4: http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
 # (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
 Patch0: gnucash-quiet.patch
 URL: http://www.gnucash.org/
