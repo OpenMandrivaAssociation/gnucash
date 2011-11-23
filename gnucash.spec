@@ -6,7 +6,7 @@
 %define build_hbci 1
 Name: gnucash
 Summary: Application to keep track of your finances
-Version: 2.4.7
+Version: 2.4.8
 Release: %mkrel 1
 License: GPLv2+
 Group: Office
