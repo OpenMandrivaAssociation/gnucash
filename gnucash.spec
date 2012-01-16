@@ -20,6 +20,7 @@ Patch1:	gnucash-2.4.8_glib_h.patch
 BuildRequires: intltool
 BuildRequires: desktop-file-utils
 BuildRequires: libxslt-proc
+BuildRequires: scrollkeeper
 BuildRequires: slib
 BuildRequires: guile-devel
 BuildRequires: goffice-devel >= 0.7
