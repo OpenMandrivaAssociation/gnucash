@@ -136,9 +136,10 @@ find %{buildroot} -type f -name "*.la" -exec rm -f {} ';'
 
 #don't ship this file
 %{find_lang} %{name} --with-gnome --all-name
-for omf in $(ls %{buildroot}%{_datadir}/omf/%{name}-docs/*.omf|fgrep -v -- -C.omf);do 
-echo "%lang($(basename $omf|sed -e s/.*-// -e s/.omf//)) $(echo $omf|sed -e s!%{buildroot}!!)" >> %{name}.lang
-done
+#gw readd for backports?
+#for omf in $(ls %{buildroot}%{_datadir}/omf/%{name}-docs/*.omf|fgrep -v -- -C.omf);do 
+#echo "%lang($(basename $omf|sed -e s/.*-// -e s/.omf//)) $(echo $omf|sed -e s!%{buildroot}!!)" >> %{name}.lang
+#done
 
 # Menu entry 
 desktop-file-install --vendor="" \
@@ -203,8 +204,8 @@ rm -f %{buildroot}%{_bindir}/gnc-test-env
 %doc %{_datadir}/%{name}/doc
 %{_datadir}/%{name}/scm
 %{_mandir}/*/*
-%dir %{_datadir}/omf/%{name}-docs/
-%{_datadir}/omf/%{name}-docs/*.omf
+#%dir %{_datadir}/omf/%{name}-docs/
+#%{_datadir}/omf/%{name}-docs/*.omf
 
 %exclude %{_libdir}/gnucash/libgncmod-ofx*
 %if %build_hbci
