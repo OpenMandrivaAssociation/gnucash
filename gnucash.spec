@@ -6,7 +6,7 @@
 %define build_hbci 1
 Name: gnucash
 Summary: Application to keep track of your finances
-Version: 2.4.9
+Version: 2.4.10
 Release: 1
 License: GPLv2+
 Group: Office
@@ -15,7 +15,6 @@ Source0: http://downloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4: http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
 # (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
 Patch0: gnucash-quiet.patch
-Patch1:	gnucash-2.4.8_glib_h.patch
 
 BuildRequires: intltool
 BuildRequires: desktop-file-utils
