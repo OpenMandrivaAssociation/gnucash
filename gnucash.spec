@@ -22,7 +22,7 @@ BuildRequires: libxslt-proc
 BuildRequires: scrollkeeper
 BuildRequires: slib
 BuildRequires: guile-devel
-BuildRequires: goffice-devel >= 0.7
+BuildRequires: pkgconfig(libgoffice-0.8)
 BuildRequires: webkitgtk-devel
 BuildRequires: dbi-devel
 BuildRequires: libofx-devel >= 0.7.0
