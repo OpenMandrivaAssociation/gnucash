@@ -1,0 +1,56 @@
+diff -up gnucash-2.4.5/configure.ac.foo gnucash-2.4.5/configure.ac
+--- gnucash-2.4.5/configure.ac.foo	2011-05-13 14:32:12.403684951 -0400
++++ gnucash-2.4.5/configure.ac	2011-05-13 14:33:28.397684863 -0400
+@@ -410,7 +410,7 @@ if test "x$saved_GUILE_INCS" != x; then
+   GUILE_INCS="$saved_GUILE_INCS"
+ fi
+ 
+-AS_SCRUB_INCLUDE(GUILE_INCS)
++AC_SUBST(GUILE_INCS)
+ AC_SUBST(GUILE_LIBS)
+ AC_SUBST(GUILE)
+ 
+diff -up gnucash-2.4.5/src/import-export/aqbanking/Makefile.in.foo gnucash-2.4.5/src/import-export/aqbanking/Makefile.in
+--- gnucash-2.4.5/src/import-export/aqbanking/Makefile.in.foo	2011-05-13 14:51:07.793685262 -0400
++++ gnucash-2.4.5/src/import-export/aqbanking/Makefile.in	2011-05-13 14:51:57.459685276 -0400
+@@ -480,6 +480,7 @@ AM_CFLAGS = \
+   ${GNOME_CFLAGS} \
+   ${GLADE_CFLAGS} \
+   ${GLIB_CFLAGS} \
++  ${GUILE_CFLAGS} \
+   ${AQBANKING_CFLAGS}
+ 
+ uidir = $(GNC_UI_DIR)
+diff -up gnucash-2.4.5/src/plugins/bi_import/Makefile.in.foo gnucash-2.4.5/src/plugins/bi_import/Makefile.in
+--- gnucash-2.4.5/src/plugins/bi_import/Makefile.in.foo	2011-05-13 14:53:18.470685304 -0400
++++ gnucash-2.4.5/src/plugins/bi_import/Makefile.in	2011-05-13 14:53:35.507685313 -0400
+@@ -459,6 +459,7 @@ AM_CFLAGS = \
+   -I${top_srcdir}/lib/libc \
+   ${GNOME_CFLAGS} \
+   ${GLADE_CFLAGS} \
++  ${GUILE_CFLAGS} \
+   ${QOF_CFLAGS} \
+   ${GLIB_CFLAGS}
+ 
+diff -up gnucash-2.4.5/src/import-export/aqbanking/Makefile.am.foo gnucash-2.4.5/src/import-export/aqbanking/Makefile.am
+--- gnucash-2.4.5/src/import-export/aqbanking/Makefile.am.foo	2011-05-13 15:14:15.367685775 -0400
++++ gnucash-2.4.5/src/import-export/aqbanking/Makefile.am	2011-05-13 15:14:24.446685776 -0400
+@@ -64,6 +64,7 @@ AM_CFLAGS = \
+   ${GNOME_CFLAGS} \
+   ${GLADE_CFLAGS} \
+   ${GLIB_CFLAGS} \
++  ${GUILE_CFLAGS} \
+   ${AQBANKING_CFLAGS}
+ 
+ uidir = $(GNC_UI_DIR)
+diff -up gnucash-2.4.5/src/plugins/bi_import/Makefile.am.foo gnucash-2.4.5/src/plugins/bi_import/Makefile.am
+--- gnucash-2.4.5/src/plugins/bi_import/Makefile.am.foo	2011-05-13 15:14:42.890685786 -0400
++++ gnucash-2.4.5/src/plugins/bi_import/Makefile.am	2011-05-13 15:14:51.490685786 -0400
+@@ -51,6 +51,7 @@ AM_CFLAGS = \
+   -I${top_srcdir}/lib/libc \
+   ${GNOME_CFLAGS} \
+   ${GLADE_CFLAGS} \
++  ${GUILE_CFLAGS} \
+   ${QOF_CFLAGS} \
+   ${GLIB_CFLAGS}
+ 

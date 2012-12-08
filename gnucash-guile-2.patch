@@ -1,0 +1,97 @@
+commit 42600d30188a4ee11c815b72066399496ed9854c
+Author: Geert Janssens <janssens-geert@telenet.be>
+Date:   Mon Mar 21 15:09:54 2011 +0000
+
+    [PATCH 2/4] Bug #615168: Remove instances of (use-modules (ice-9 slib))
+    
+    There are no more instances of (require ...), so Guile's slib support is
+    no longer needed.
+    
+    Patch by Andy Wingo.
+    
+    git-svn-id: svn+ssh://svn.gnucash.org/repo/gnucash/trunk@20436 57a11ea4-9604-0410-9ed3-97b8803252fd
+
+diff --git a/src/app-utils/c-interface.scm b/src/app-utils/c-interface.scm
+index 10837a4..548e3bb 100644
+--- a/src/app-utils/c-interface.scm
++++ b/src/app-utils/c-interface.scm
+@@ -15,7 +15,6 @@
+ ;; 51 Franklin Street, Fifth Floor    Fax:    +1-617-542-2652
+ ;; Boston, MA  02110-1301,  USA       gnu@gnu.org
+ 
+-(use-modules (ice-9 slib))
+ (use-modules (ice-9 syncase))
+ 
+ (define (gnc:error->string tag args)
+diff --git a/src/report/business-reports/aging.scm b/src/report/business-reports/aging.scm
+index 60beb9e..6047baa 100644
+--- a/src/report/business-reports/aging.scm
++++ b/src/report/business-reports/aging.scm
+@@ -26,7 +26,6 @@
+ 
+ (define-module (gnucash report aging))
+ 
+-(use-modules (ice-9 slib))
+ (use-modules (gnucash main))
+ (use-modules (gnucash printf))
+ (use-modules (gnucash gnc-module))
+diff --git a/src/report/business-reports/easy-invoice.scm b/src/report/business-reports/easy-invoice.scm
+index 13e0adb..10d74e3 100644
+--- a/src/report/business-reports/easy-invoice.scm
++++ b/src/report/business-reports/easy-invoice.scm
+@@ -31,7 +31,6 @@
+ (define-module (gnucash report easy-invoice))
+ 
+ (use-modules (srfi srfi-1))
+-(use-modules (ice-9 slib))
+ (use-modules (gnucash printf))
+ (use-modules (gnucash gnc-module))
+ 
+diff --git a/src/report/business-reports/fancy-invoice.scm b/src/report/business-reports/fancy-invoice.scm
+index 344c9b5..f6563c1 100644
+--- a/src/report/business-reports/fancy-invoice.scm
++++ b/src/report/business-reports/fancy-invoice.scm
+@@ -49,7 +49,6 @@
+ (define-module (gnucash report fancy-invoice))
+ 
+ (use-modules (srfi srfi-1))
+-(use-modules (ice-9 slib))
+ (use-modules (gnucash printf))
+ (use-modules (gnucash gnc-module))
+ 
+diff --git a/src/report/business-reports/invoice.scm b/src/report/business-reports/invoice.scm
+index 32cf062..5e7ca86 100644
+--- a/src/report/business-reports/invoice.scm
++++ b/src/report/business-reports/invoice.scm
+@@ -25,7 +25,6 @@
+ (define-module (gnucash report invoice))
+ 
+ (use-modules (srfi srfi-1))
+-(use-modules (ice-9 slib))
+ (use-modules (gnucash printf))
+ (use-modules (gnucash gnc-module))
+ 
+diff --git a/src/report/report-system/report-system.scm b/src/report/report-system/report-system.scm
+index aaa1a3e..ca11ae2 100644
+--- a/src/report/report-system/report-system.scm
++++ b/src/report/report-system/report-system.scm
+@@ -7,7 +7,6 @@
+ 
+ (define-module (gnucash report report-system))
+ (use-modules (gnucash main)) ;; FIXME: delete after we finish modularizing.
+-(use-modules (ice-9 slib))
+ (use-modules (ice-9 regex))
+ (use-modules (srfi srfi-1))
+ (use-modules (srfi srfi-19))
+diff --git a/src/report/standard-reports/standard-reports.scm b/src/report/standard-reports/standard-reports.scm
+index d30b9a3..c51eea7 100644
+--- a/src/report/standard-reports/standard-reports.scm
++++ b/src/report/standard-reports/standard-reports.scm
+@@ -6,7 +6,6 @@
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ 
+ (define-module (gnucash report standard-reports))
+-(use-modules (ice-9 slib))
+ (use-modules (srfi srfi-13))
+ (use-modules (gnucash main)) ;; FIXME: delete after we finish modularizing.
+ (use-modules (gnucash core-utils))

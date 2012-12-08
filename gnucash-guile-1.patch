@@ -1,0 +1,117 @@
+commit cab4dc5a959f150a4d0f7514d3e87e4dd3ae2e7b
+Author: Geert Janssens <janssens-geert@telenet.be>
+Date:   Mon Mar 21 15:09:43 2011 +0000
+
+    [PATCH 1/4] Bug #615168: Remove spurious (require 'hash-table) instances
+    
+    Patch by Andy Wingo.
+    
+    There is nothing that the slib hash-table module provides that was used
+    in any of these files; they all used Guile's stock hash tables.
+    
+    git-svn-id: svn+ssh://svn.gnucash.org/repo/gnucash/trunk@20435 57a11ea4-9604-0410-9ed3-97b8803252fd
+
+diff --git a/src/app-utils/c-interface.scm b/src/app-utils/c-interface.scm
+index 9827d21..10837a4 100644
+--- a/src/app-utils/c-interface.scm
++++ b/src/app-utils/c-interface.scm
+@@ -18,8 +18,6 @@
+ (use-modules (ice-9 slib))
+ (use-modules (ice-9 syncase))
+ 
+-(require 'hash-table)
+-
+ (define (gnc:error->string tag args)
+   (define (write-error port)
+     (if (and (list? args) (not (null? args)))
+diff --git a/src/app-utils/prefs.scm b/src/app-utils/prefs.scm
+index d460646..a0ee256 100644
+--- a/src/app-utils/prefs.scm
++++ b/src/app-utils/prefs.scm
+@@ -17,8 +17,6 @@
+ ;; 51 Franklin Street, Fifth Floor    Fax:    +1-617-542-2652
+ ;; Boston, MA  02110-1301,  USA       gnu@gnu.org
+ 
+-(require 'hash-table)
+-
+ ;; (define gnc:*double-entry-restriction*
+ ;;   (gnc:make-config-var
+ ;;    "Determines how the splits in a transaction will be balanced. 
+diff --git a/src/report/business-reports/aging.scm b/src/report/business-reports/aging.scm
+index aa2bfeb..60beb9e 100644
+--- a/src/report/business-reports/aging.scm
++++ b/src/report/business-reports/aging.scm
+@@ -31,8 +31,6 @@
+ (use-modules (gnucash printf))
+ (use-modules (gnucash gnc-module))
+ 
+-(require 'hash-table)
+-
+ (gnc:module-load "gnucash/report/report-system" 0)
+ (gnc:module-load "gnucash/business-core" 0)
+ 
+diff --git a/src/report/business-reports/easy-invoice.scm b/src/report/business-reports/easy-invoice.scm
+index 59101c9..13e0adb 100644
+--- a/src/report/business-reports/easy-invoice.scm
++++ b/src/report/business-reports/easy-invoice.scm
+@@ -35,8 +35,6 @@
+ (use-modules (gnucash printf))
+ (use-modules (gnucash gnc-module))
+ 
+-(require 'hash-table)
+-
+ (gnc:module-load "gnucash/report/report-system" 0)
+ (gnc:module-load "gnucash/business-utils" 0)
+ 
+diff --git a/src/report/business-reports/fancy-invoice.scm b/src/report/business-reports/fancy-invoice.scm
+index f568841..344c9b5 100644
+--- a/src/report/business-reports/fancy-invoice.scm
++++ b/src/report/business-reports/fancy-invoice.scm
+@@ -53,8 +53,6 @@
+ (use-modules (gnucash printf))
+ (use-modules (gnucash gnc-module))
+ 
+-(require 'hash-table)
+-
+ (gnc:module-load "gnucash/report/report-system" 0)
+ (gnc:module-load "gnucash/business-utils" 0)
+ 
+diff --git a/src/report/business-reports/invoice.scm b/src/report/business-reports/invoice.scm
+index a2b1fd8..32cf062 100644
+--- a/src/report/business-reports/invoice.scm
++++ b/src/report/business-reports/invoice.scm
+@@ -29,8 +29,6 @@
+ (use-modules (gnucash printf))
+ (use-modules (gnucash gnc-module))
+ 
+-(require 'hash-table)
+-
+ (gnc:module-load "gnucash/report/report-system" 0)
+ (gnc:module-load "gnucash/business-utils" 0)
+ 
+diff --git a/src/report/report-system/report-system.scm b/src/report/report-system/report-system.scm
+index 3043314..aaa1a3e 100644
+--- a/src/report/report-system/report-system.scm
++++ b/src/report/report-system/report-system.scm
+@@ -13,8 +13,6 @@
+ (use-modules (srfi srfi-19))
+ (use-modules (gnucash gnc-module))
+ 
+-(require 'hash-table)
+-
+ (gnc:module-load "gnucash/engine" 0)
+ (gnc:module-load "gnucash/app-utils" 0)
+ (gnc:module-load "gnucash/html" 0)
+diff --git a/src/report/standard-reports/standard-reports.scm b/src/report/standard-reports/standard-reports.scm
+index 272225c..d30b9a3 100644
+--- a/src/report/standard-reports/standard-reports.scm
++++ b/src/report/standard-reports/standard-reports.scm
+@@ -14,8 +14,6 @@
+ (export gnc:register-report-create)
+ (export gnc:register-report-hook)
+ 
+-(require 'hash-table)
+-
+ (define gnc:*register-report-hash* (make-hash-table 23))
+ 
+ ;; Keep a hash-table of records, keyed off the account type.  Each
