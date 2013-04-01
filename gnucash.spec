@@ -1,3 +1,4 @@
+%define _disable_ld_no_undefined 1
 %define major 0
 %define libname %mklibname %{name} %{major}
 %define develname %mklibname -d %{name}
@@ -11,8 +12,8 @@
 
 Name:		gnucash
 Summary:	Application to keep track of your finances
-Version:	2.4.11
-Release:	2
+Version:	2.4.12
+Release:	1
 License:	GPLv2+
 Group:		Office
 URL:		http://www.gnucash.org/
@@ -44,7 +45,7 @@ BuildRequires:	scrollkeeper
 BuildRequires:	slib
 BuildRequires:	swig
 BuildRequires:	pkgconfig(guile-2.0)
-BuildRequires:	pkgconfig(libgoffice-0.8)
+BuildRequires:	pkgconfig(libgoffice-0.10)
 BuildRequires:	pkgconfig(webkit-1.0)
 BuildRequires:	dbi-devel
 BuildRequires:	pkgconfig(libofx)
