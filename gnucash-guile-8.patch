@@ -20,16 +20,3 @@ index 3b00d50..7a114ef 100644
  
  (gnc:module-load "gnucash/engine" 0)
  
-diff --git a/src/app-utils/c-interface.scm b/src/app-utils/c-interface.scm
-index 0f912a3..e6243d7 100644
---- a/src/app-utils/c-interface.scm
-+++ b/src/app-utils/c-interface.scm
-@@ -15,8 +15,6 @@
- ;; 51 Franklin Street, Fifth Floor    Fax:    +1-617-542-2652
- ;; Boston, MA  02110-1301,  USA       gnu@gnu.org
- 
--(use-modules (ice-9 syncase))
--
- (define (gnc:error->string tag args)
-   (define (write-error port)
-     (if (and (list? args) (not (null? args)))

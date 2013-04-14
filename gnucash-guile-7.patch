@@ -32,25 +32,25 @@ diff -up gnucash-2.4.5/src/plugins/bi_import/Makefile.in.foo gnucash-2.4.5/src/p
    ${QOF_CFLAGS} \
    ${GLIB_CFLAGS}
  
-diff -up gnucash-2.4.5/src/import-export/aqbanking/Makefile.am.foo gnucash-2.4.5/src/import-export/aqbanking/Makefile.am
---- gnucash-2.4.5/src/import-export/aqbanking/Makefile.am.foo	2011-05-13 15:14:15.367685775 -0400
-+++ gnucash-2.4.5/src/import-export/aqbanking/Makefile.am	2011-05-13 15:14:24.446685776 -0400
-@@ -64,6 +64,7 @@ AM_CFLAGS = \
-   ${GNOME_CFLAGS} \
-   ${GLADE_CFLAGS} \
-   ${GLIB_CFLAGS} \
-+  ${GUILE_CFLAGS} \
-   ${AQBANKING_CFLAGS}
- 
+--- gnucash-2.4.12/src/import-export/aqbanking/Makefile.in.orig	2013-04-14 20:01:02.782526327 +0100
++++ gnucash-2.4.12/src/import-export/aqbanking/Makefile.in	2013-04-14 20:03:13.494518689 +0100
+@@ -503,7 +503,7 @@
+ 	-I${top_srcdir}/src/gnome-utils -I${top_srcdir}/src/app-utils \
+ 	-I${top_srcdir}/src/engine -I${top_srcdir}/src/core-utils \
+ 	-I${top_srcdir}/src/gnc-module -I${top_srcdir}/src/libqof/qof \
+-	${GNOME_CFLAGS} ${GLADE_CFLAGS} ${GLIB_CFLAGS} \
++	${GNOME_CFLAGS} ${GLADE_CFLAGS} ${GLIB_CFLAGS} ${GUILE_CFLAGS} \
+ 	${AQBANKING_CFLAGS} -DG_LOG_DOMAIN=\"gnc.import.aqbanking\"
  uidir = $(GNC_UI_DIR)
-diff -up gnucash-2.4.5/src/plugins/bi_import/Makefile.am.foo gnucash-2.4.5/src/plugins/bi_import/Makefile.am
---- gnucash-2.4.5/src/plugins/bi_import/Makefile.am.foo	2011-05-13 15:14:42.890685786 -0400
-+++ gnucash-2.4.5/src/plugins/bi_import/Makefile.am	2011-05-13 15:14:51.490685786 -0400
-@@ -51,6 +51,7 @@ AM_CFLAGS = \
-   -I${top_srcdir}/lib/libc \
-   ${GNOME_CFLAGS} \
-   ${GLADE_CFLAGS} \
-+  ${GUILE_CFLAGS} \
-   ${QOF_CFLAGS} \
-   ${GLIB_CFLAGS}
+ ui_DATA = \
+--- gnucash-2.4.12/src/plugins/bi_import/Makefile.in.orig	2013-04-14 20:01:02.905526319 +0100
++++ gnucash-2.4.12/src/plugins/bi_import/Makefile.in	2013-04-14 20:04:02.433515830 +0100
+@@ -483,7 +483,7 @@
+ 	-I${top_srcdir}/src/gnome-utils -I${top_srcdir}/src/app-utils \
+ 	-I${top_srcdir}/src/engine -I${top_srcdir}/src/core-utils \
+ 	-I${top_srcdir}/src/gnc-module -I${top_srcdir}/lib/libc \
+-	${GNOME_CFLAGS} ${GLADE_CFLAGS} ${QOF_CFLAGS} ${GLIB_CFLAGS} \
++	${GNOME_CFLAGS} ${GLADE_CFLAGS} ${GUILE_CFLAGS} ${QOF_CFLAGS} ${GLIB_CFLAGS} \
+ 	-DG_LOG_DOMAIN=\"gnc.plugin.bi-import\"
+ all: all-recursive
  
