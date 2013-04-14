@@ -45,7 +45,7 @@ BuildRequires:	scrollkeeper
 BuildRequires:	slib
 BuildRequires:	swig
 BuildRequires:	pkgconfig(guile-2.0)
-BuildRequires:	pkgconfig(libgoffice-0.10)
+BuildRequires:	pkgconfig(libgoffice-0.8)
 BuildRequires:	pkgconfig(webkit-1.0)
 BuildRequires:	dbi-devel
 BuildRequires:	pkgconfig(libofx)
