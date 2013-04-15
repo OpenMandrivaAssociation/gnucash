@@ -33,7 +33,7 @@ Patch105:	gnucash-guile-5.patch
 Patch106:	gnucash-guile-6.patch
 Patch107:	gnucash-guile-7.patch
 Patch108:	gnucash-guile-8.patch
-#Patch109:	gnucash-guile-9.patch
+Patch109:	gnucash-guile-9.patch
 
 # build noise
 Patch150:	gnucash-notsvn.patch
@@ -122,7 +122,7 @@ This package provides libraries to use gnucash.
 %patch106 -p1
 %patch107 -p1
 %patch108 -p1
-#%patch109 -p1
+%patch109 -p1
 %patch150 -p1
 cp %{SOURCE2} src/engine
 
