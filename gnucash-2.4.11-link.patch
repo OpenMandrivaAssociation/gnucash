@@ -1,5 +1,5 @@
---- src/backend/sql/Makefile.am.link	2012-09-04 10:19:14.000000000 +0800
-+++ src/backend/sql/Makefile.am	2012-09-04 10:19:53.000000000 +0800
+--- ./src/backend/sql/Makefile.am.link	2012-09-04 10:19:14.000000000 +0800
++++ ./src/backend/sql/Makefile.am	2012-09-04 10:19:53.000000000 +0800
 @@ -72,6 +72,7 @@
     ${GLIB_LIBS} \
     ${GUILE_LIBS} \
@@ -8,8 +8,8 @@
     ${top_builddir}/src/engine/libgncmod-engine.la \
     ${top_builddir}/src/libqof/qof/libgnc-qof.la
  
---- src/backend/sql/Makefile.in.link	2012-09-04 10:19:20.000000000 +0800
-+++ src/backend/sql/Makefile.in	2012-09-04 10:20:12.000000000 +0800
+--- ./src/backend/sql/Makefile.in.link	2012-09-04 10:19:20.000000000 +0800
++++ ./src/backend/sql/Makefile.in	2012-09-04 10:20:12.000000000 +0800
 @@ -480,6 +480,7 @@
     ${GLIB_LIBS} \
     ${GUILE_LIBS} \
@@ -18,8 +18,8 @@
     ${top_builddir}/src/engine/libgncmod-engine.la \
     ${top_builddir}/src/libqof/qof/libgnc-qof.la
  
---- src/gnome-search/Makefile.am.link	2012-09-04 14:20:28.000000000 +0800
-+++ src/gnome-search/Makefile.am	2012-09-04 14:22:26.000000000 +0800
+--- ./src/gnome-search/Makefile.am.link	2012-09-04 14:20:28.000000000 +0800
++++ ./src/gnome-search/Makefile.am	2012-09-04 14:22:26.000000000 +0800
 @@ -53,6 +53,7 @@
    ${top_builddir}/src/gnc-module/libgnc-module.la \
    ${top_builddir}/src/core-utils/libgnc-core-utils.la \
@@ -28,8 +28,8 @@
    ${GUILE_LIBS} \
    ${GNOME_LIBS} \
    ${GLADE_LIBS} \
---- src/gnome-search/Makefile.in.link	2012-09-04 14:20:34.000000000 +0800
-+++ src/gnome-search/Makefile.in	2012-09-04 14:22:47.000000000 +0800
+--- ./src/gnome-search/Makefile.in.link	2012-09-04 14:20:34.000000000 +0800
++++ ./src/gnome-search/Makefile.in	2012-09-04 14:22:47.000000000 +0800
 @@ -430,6 +430,7 @@
    ${top_builddir}/src/gnc-module/libgnc-module.la \
    ${top_builddir}/src/core-utils/libgnc-core-utils.la \
@@ -38,8 +38,8 @@
    ${GUILE_LIBS} \
    ${GNOME_LIBS} \
    ${GLADE_LIBS} \
---- src/gnome/Makefile.am.link	2012-09-04 14:33:31.000000000 +0800
-+++ src/gnome/Makefile.am	2012-09-04 14:34:08.000000000 +0800
+--- ./src/gnome/Makefile.am.link	2012-09-04 14:33:31.000000000 +0800
++++ ./src/gnome/Makefile.am	2012-09-04 14:34:08.000000000 +0800
 @@ -16,6 +16,7 @@
    ${top_builddir}/src/engine/libgncmod-engine.la \
    ${top_builddir}/src/core-utils/libgnc-core-utils.la \
@@ -48,8 +48,8 @@
    ${GLADE_LIBS} \
    ${GUILE_LIBS} \
    ${GNOME_LIBS} \
---- src/gnome/Makefile.in.link	2012-09-04 14:33:37.000000000 +0800
-+++ src/gnome/Makefile.in	2012-09-04 14:34:17.000000000 +0800
+--- ./src/gnome/Makefile.in.link	2012-09-04 14:33:37.000000000 +0800
++++ ./src/gnome/Makefile.in	2012-09-04 14:34:17.000000000 +0800
 @@ -441,6 +441,7 @@
    ${top_builddir}/src/engine/libgncmod-engine.la \
    ${top_builddir}/src/core-utils/libgnc-core-utils.la \
