@@ -37,6 +37,7 @@ Patch109:	gnucash-guile-9.patch
 
 # build noise
 Patch150:	gnucash-notsvn.patch
+Patch151:	gnucash-2.4.12-swig_engine.patch
 
 BuildRequires:	intltool
 BuildRequires:	desktop-file-utils
