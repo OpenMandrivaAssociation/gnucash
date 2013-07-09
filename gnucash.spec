@@ -23,6 +23,7 @@ Source4:	http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.ta
 # (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
 Patch0:		gnucash-quiet.patch
 Patch1:		gnucash-2.4.11-link.patch
+Patch2:		gnucash-docs-2.2.0-automake.patch
 
 # Guile 2.0 support (from Fedora)
 Patch101:	gnucash-guile-1.patch
