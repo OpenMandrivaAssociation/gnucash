@@ -118,6 +118,10 @@ cp %{SOURCE2} src/engine
 export BUILDING_FROM_SVN=yes
 autoreconf -fi
 
+pushd gnucash-docs-%{doc_version}
+autoreconf -fi
+popd
+
 %build
 %configure2_5x \
 	--enable-gui \
