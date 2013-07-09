@@ -139,7 +139,7 @@ popd
 make
 
 pushd gnucash-docs-%{doc_version}
-%make
+make
 popd
 
 %install
