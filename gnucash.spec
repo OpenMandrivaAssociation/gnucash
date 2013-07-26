@@ -13,7 +13,7 @@
 Summary:	Application to keep track of your finances
 Name:		gnucash
 Version:	2.4.12
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Office
 Url:		http://www.gnucash.org/
@@ -24,17 +24,6 @@ Source4:	http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.ta
 Patch0:		gnucash-quiet.patch
 Patch1:		gnucash-2.4.11-link.patch
 Patch2:		gnucash-docs-2.2.0-automake.patch
-
-# Guile 2.0 support (from Fedora)
-Patch101:	gnucash-guile-1.patch
-Patch102:	gnucash-guile-2.patch
-Patch103:	gnucash-guile-3.patch
-Patch104:	gnucash-guile-4.patch
-Patch105:	gnucash-guile-5.patch
-Patch106:	gnucash-guile-6.patch
-Patch107:	gnucash-guile-7.patch
-Patch108:	gnucash-guile-8.patch
-Patch109:	gnucash-guile-9.patch
 
 # build noise
 Patch150:	gnucash-notsvn.patch
@@ -48,7 +37,7 @@ BuildRequires:	swig
 BuildRequires:	xsltproc
 BuildRequires:	dbi-devel
 BuildRequires:	gettext-devel
-BuildRequires:	pkgconfig(guile-2.0)
+BuildRequires:	pkgconfig(guile-1.8)
 BuildRequires:	pkgconfig(ktoblzcheck)
 BuildRequires:	pkgconfig(libglade-2.0)
 BuildRequires:	pkgconfig(libgnomeui-2.0)
