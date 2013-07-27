@@ -37,7 +37,6 @@ BuildRequires:	swig
 BuildRequires:	xsltproc
 BuildRequires:	dbi-devel
 BuildRequires:	gettext-devel
-BuildRequires:	guile1.8
 BuildRequires:	pkgconfig(guile-1.8)
 BuildRequires:	pkgconfig(ktoblzcheck)
 BuildRequires:	pkgconfig(libglade-2.0)
