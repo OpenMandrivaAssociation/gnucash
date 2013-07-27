@@ -37,6 +37,7 @@ BuildRequires:	swig
 BuildRequires:	xsltproc
 BuildRequires:	dbi-devel
 BuildRequires:	gettext-devel
+BuildRequires:	guile1.8
 BuildRequires:	pkgconfig(guile-1.8)
 BuildRequires:	pkgconfig(ktoblzcheck)
 BuildRequires:	pkgconfig(libglade-2.0)
@@ -44,7 +45,7 @@ BuildRequires:	pkgconfig(libgnomeui-2.0)
 BuildRequires:	pkgconfig(libgoffice-0.8)
 BuildRequires:	pkgconfig(libofx)
 BuildRequires:	pkgconfig(webkit-1.0)
-Requires:	guile >= 1.6
+Requires:	guile1.8-runtime
 Requires:	slib
 Requires:	yelp
 Suggests:	perl-Finance-Quote
