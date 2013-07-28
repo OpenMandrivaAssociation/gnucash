@@ -7,13 +7,13 @@
 %define build_hbci 1
 
 %if %{_use_internal_dependency_generator}
-%define __noautoreq 'devel\\(libgncmod(.*)\\)'
+%define __noautoreq 'devel\\(libgncmod(.*)\\)|libgnc.*so$'
 %endif
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
 Version:	2.4.12
-Release:	2
+Release:	3
 License:	GPLv2+
 Group:		Office
 Url:		http://www.gnucash.org/
@@ -242,10 +242,10 @@ rm -f %{buildroot}%{_bindir}/gnc-test-env
 %{_libdir}/libgnc-gnome.so.%{major}*
 %{_libdir}/libgnc-module.so.%{major}*
 %{_libdir}/libgnc-qof.so.1*
+%{_libdir}/lib*.so
 
 %files -n %{devname}
 %{_bindir}/gnucash-make-guids
 %{_bindir}/gnucash-valgrind
-%{_libdir}/lib*.so
 %{_includedir}/gnucash
 
