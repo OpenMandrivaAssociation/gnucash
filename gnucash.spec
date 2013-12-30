@@ -3,7 +3,7 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
 
-%define doc_version 2.2.0
+%define doc_version 2.6.0
 %define build_hbci 1
 
 %if %{_use_internal_dependency_generator}
@@ -12,14 +12,14 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	2.4.12
-Release:	7
+Version:	2.6.0
+Release:	1
 License:	GPLv2+
 Group:		Office
 Url:		http://www.gnucash.org/
 Source0:	http://downloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source2:	engine-common.i
-Source4:	http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.bz2
+Source4:	http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.gz
 # (fc) 2.2.1-3mdv disable unneeded warning at startup (Fedora)
 Patch0:		gnucash-quiet.patch
 Patch1:		gnucash-2.4.11-link.patch
@@ -37,14 +37,14 @@ BuildRequires:	swig
 BuildRequires:	xsltproc
 BuildRequires:	dbi-devel
 BuildRequires:	gettext-devel
-BuildRequires:	pkgconfig(guile-1.8)
+BuildRequires:	pkgconfig(guile-2.0)
 BuildRequires:	pkgconfig(ktoblzcheck)
 BuildRequires:	pkgconfig(libglade-2.0)
 BuildRequires:	pkgconfig(libgnomeui-2.0)
 BuildRequires:	pkgconfig(libgoffice-0.8)
 BuildRequires:	pkgconfig(libofx)
 BuildRequires:	pkgconfig(webkit-1.0)
-Requires:	guile1.8-runtime
+Requires:	guile-runtime
 Requires:	slib
 Requires:	yelp
 Suggests:	perl-Finance-Quote
