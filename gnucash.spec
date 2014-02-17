@@ -197,7 +197,7 @@ rm -f %{buildroot}%{_bindir}/gnc-test-env
 %{_datadir}/applications/%{name}.desktop
 %dir %{_libdir}/gnucash
 %{_libdir}/gnucash/*.so*
-%{_libdir}/gnucash/overrides
+%{_libexecdir}/gnucash/overrides
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/accounts
 %{_datadir}/%{name}/checks
