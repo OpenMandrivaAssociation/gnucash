@@ -1,3 +1,6 @@
+removed_sources:
+  gnucash-2.6.0.tar.bz2: 9715468bbe9e4cef6559bfa9825d51ac10d6ff84
+  gnucash-docs-2.6.0.tar.gz: 2c91f811f529f215fce1ac2061be72430dad3e79
 sources:
-  "gnucash-2.4.12.tar.bz2": 33f716d69a040f241e1e9df2dbfe370268565c6a
-  "gnucash-docs-2.2.0.tar.bz2": 3aec57672ab1f38960e1b164b2150ad0b7ee2d56
+  gnucash-2.6.2.tar.bz2: 26712924e4730285197a708dd6a2f608c092d230
+  gnucash-docs-2.6.2.tar.gz: c381091703838c0606106f47288775d260279096
