@@ -19,6 +19,7 @@ Group:		Office
 Url:		http://www.gnucash.org/
 Source0:	http://downloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4:	http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.gz
+Source100:	gnucash.rpmlintrc
 
 BuildRequires:	intltool
 BuildRequires:	desktop-file-utils
