@@ -12,7 +12,7 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	2.6.3
+Version:	2.6.4
 Release:	1
 License:	GPLv2+
 Group:		Office
@@ -98,7 +98,7 @@ This package provides libraries to use gnucash.
 %apply_patches
 
 %build
-%configure2_5x \
+%configure \
 	--enable-gui \
 	--enable-ofx \
 	--disable-error-on-warning \
