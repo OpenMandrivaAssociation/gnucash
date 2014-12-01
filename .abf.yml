@@ -4,5 +4,5 @@ removed_sources:
   gnucash-docs-2.6.0.tar.gz: 2c91f811f529f215fce1ac2061be72430dad3e79
   gnucash-docs-2.6.2.tar.gz: c381091703838c0606106f47288775d260279096
 sources:
-  gnucash-2.6.3.tar.bz2: 40ea9c069d0ad0a811b74f00c2b32faad6108a6a
-  gnucash-docs-2.6.3.tar.gz: c6604153372f25f191751ddf84807912dcbb0f77
+  gnucash-2.6.4.tar.bz2: cbf5d356901523b5f8e9839a6f5b14ace401ebd7
+  gnucash-docs-2.6.4.tar.gz: e284014e6d0a495daa6d6f5354124fda1ded9f5b
