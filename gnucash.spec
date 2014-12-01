@@ -3,7 +3,7 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
 
-%define doc_version 2.6.2
+%define doc_version 2.6.4
 %define build_hbci 1
 
 %if %{_use_internal_dependency_generator}
@@ -12,7 +12,7 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	2.6.2
+Version:	2.6.4
 Release:	1
 License:	GPLv2+
 Group:		Office
