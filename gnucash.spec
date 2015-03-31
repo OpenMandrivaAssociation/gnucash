@@ -3,17 +3,16 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
 
-%define doc_version 2.6.3
+%define doc_version 2.6.5
 %define build_hbci 1
 
-%if %{_use_internal_dependency_generator}
-%define __noautoreq 'devel\\(libgncmod(.*)\\)|libgnc.*so$'
-%endif
+%define __noautoreq 'devel\\(libgncmod(.*)\\)|libgnc.*so$|devel\\(lib(gnc|cairo|gdk|glib|gmodule|gobject|gtk|guile|m|pango|xml2|z)(.*)\\)'
+%define __noautoprov 'devel\\(libgnc(.*)\\)'
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	2.6.4
-Release:	2
+Version:	2.6.6
+Release:	1
 License:	GPLv2+
 Group:		Office
 Url:		http://www.gnucash.org/
