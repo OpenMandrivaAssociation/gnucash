@@ -184,11 +184,11 @@ rm -f %{buildroot}%{_bindir}/gnc-test-env
 %{_libexecdir}/%{name}/overrides/*
 %dir %{_libdir}/gnucash
 %{_libdir}/gnucash/*.so*
+%{_libdir}/%{name}/scm
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/accounts
 %{_datadir}/%{name}/checks
 %{_datadir}/%{name}/gtkbuilder
-%{_datadir}/%{name}/guile-modules
 %{_datadir}/%{name}/jqplot
 %{_datadir}/%{name}/pixmaps
 %{_datadir}/%{name}/ui
