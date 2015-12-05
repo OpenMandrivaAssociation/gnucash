@@ -32,7 +32,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(guile-2.0)
 BuildRequires:	pkgconfig(ktoblzcheck)
 BuildRequires:	pkgconfig(libglade-2.0)
-BuildRequires:	pkgconfig(libgnomeui-2.0)
 BuildRequires:	pkgconfig(libgoffice-0.8)
 BuildRequires:	pkgconfig(libofx)
 BuildRequires:	pkgconfig(webkit-1.0)
