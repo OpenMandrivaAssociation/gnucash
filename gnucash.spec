@@ -35,6 +35,7 @@ BuildRequires:	pkgconfig(libglade-2.0)
 BuildRequires:	pkgconfig(libgoffice-0.8)
 BuildRequires:	pkgconfig(libofx)
 BuildRequires:	pkgconfig(webkit-1.0)
+BuildRequires:	pkgconfig(libgnomecanvas-2.0)
 Requires:	libdbi-drivers-dbd-sqlite3
 Requires:	guile-runtime
 Requires:	slib
