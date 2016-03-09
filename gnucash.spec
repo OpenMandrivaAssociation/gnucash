@@ -3,7 +3,7 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
 
-%define doc_version 2.6.10
+%define doc_version 2.6.11
 %define build_hbci 1
 
 %define __noautoreq 'devel\\(libgncmod(.*)\\)|libgnc.*so$|devel\\(lib(gnc|cairo|gdk|glib|gmodule|gobject|gtk|guile|m|pango|xml2|z)(.*)\\)'
@@ -11,7 +11,7 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	2.6.10
+Version:	2.6.11
 Release:	0.1
 License:	GPLv2+
 Group:		Office
@@ -32,10 +32,10 @@ BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(guile-2.0)
 BuildRequires:	pkgconfig(ktoblzcheck)
 BuildRequires:	pkgconfig(libglade-2.0)
-BuildRequires:	pkgconfig(libgnomeui-2.0)
 BuildRequires:	pkgconfig(libgoffice-0.8)
 BuildRequires:	pkgconfig(libofx)
 BuildRequires:	pkgconfig(webkit-1.0)
+BuildRequires:	pkgconfig(libgnomecanvas-2.0)
 Requires:	libdbi-drivers-dbd-sqlite3
 Requires:	guile-runtime
 Requires:	slib
@@ -97,7 +97,7 @@ This package provides libraries to use gnucash.
 %apply_patches
 
 %build
-%configure2_5x \
+%configure \
 	--enable-gui \
 	--enable-ofx \
 	--disable-error-on-warning \
