@@ -111,6 +111,7 @@ This package provides libraries to use gnucash.
 %endif
 
 pushd gnucash-docs-%{doc_version}
+autoreconf -fiv
 %configure2_5x \
 	--localstatedir=/var/lib
 popd
