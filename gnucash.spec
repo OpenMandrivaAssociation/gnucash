@@ -3,7 +3,7 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
 
-%define doc_version 2.6.15
+%define doc_version 2.6.19
 %define build_hbci 1
 
 %define __noautoreq 'devel\\(libgncmod(.*)\\)|libgnc.*so$|devel\\(lib(gnc|cairo|gdk|glib|gmodule|gobject|gtk|guile|m|pango|xml2|z)(.*)\\)'
@@ -11,7 +11,7 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	2.6.15
+Version:	2.7.6
 Release:	1
 License:	GPLv2+
 Group:		Office
@@ -19,8 +19,7 @@ Url:		http://www.gnucash.org/
 Source0:	http://downloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4:	http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.gz
 Source100:	gnucash.rpmlintrc
-
-BuildRequires:	intltool
+BuildRequires:	cmake
 BuildRequires:	desktop-file-utils
 BuildRequires:	rarian
 BuildRequires:	slib
@@ -31,11 +30,11 @@ BuildRequires:	libdbi-drivers-dbd-sqlite3
 BuildRequires:	gettext-devel
 BuildRequires:	pkgconfig(guile-2.0)
 BuildRequires:	pkgconfig(ktoblzcheck)
-BuildRequires:	pkgconfig(libglade-2.0)
-BuildRequires:	pkgconfig(libgoffice-0.8)
 BuildRequires:	pkgconfig(libofx)
-BuildRequires:	pkgconfig(webkit-1.0)
-BuildRequires:	pkgconfig(libgnomecanvas-2.0)
+BuildRequires:	pkgconfig(webkit2gtk-4.0)
+BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:	gmock-devel
+BuildRequires:	gmock-source
 Requires:	libdbi-drivers-dbd-sqlite3
 Requires:	guile-runtime
 Requires:	slib
@@ -97,32 +96,20 @@ This package provides libraries to use gnucash.
 %apply_patches
 
 %build
-%configure \
-	--enable-gui \
-	--enable-ofx \
-	--disable-error-on-warning \
-	--disable-schemas-install \
-	--disable-static \
-	--enable-locale-specific-tax \
-	--enable-dbi \
-	--with-html-engine=webkit \
-%if %{build_hbci}
-	--enable-aqbanking
-%endif
+%cmake
+
+%make
+
+cd ..
 
 pushd gnucash-docs-%{doc_version}
 %configure \
 	--localstatedir=/var/lib
-popd
-
-make
-
-pushd gnucash-docs-%{doc_version}
 make
 popd
 
 %install
-%makeinstall_std
+%makeinstall_std -C build
 
 pushd gnucash-docs-%{doc_version}
 %makeinstall_std
@@ -155,7 +142,7 @@ rm -f %{buildroot}%{_bindir}/gnc-test-env
 %endif
 
 %files -f %{name}.lang
-%doc AUTHORS COPYING HACKING NEWS README*
+%doc AUTHORS LICENSE HACKING NEWS README*
 %doc doc/README.german doc/README.francais doc/guile-hackers.txt
 %{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.business.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.checkprinting.gschema.xml
@@ -173,15 +160,17 @@ rm -f %{buildroot}%{_bindir}/gnc-test-env
 %{_datadir}/glib-2.0/schemas/org.gnucash.warnings.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gnucash.window.pages.account.tree.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gnucash.window.pages.gschema.xml
+%{_datadir}/glib-2.0/schemas/gschemas.compiled
+%{_datadir}/glib-2.0/schemas/org.gnucash.general.finance-quote.gschema.xml
+
+
 %config(noreplace) %{_sysconfdir}/%{name}
 %{_bindir}/gnucash
-%{_bindir}/gnucash-env
 %{_bindir}/gnc-fq-check
 %{_bindir}/gnc-fq-dump
 %{_bindir}/gnc-fq-helper
 %{_bindir}/gnc-fq-update
 %{_datadir}/applications/%{name}.desktop
-%{_libexecdir}/%{name}/overrides/*
 %dir %{_libdir}/gnucash
 %{_libdir}/gnucash/*.so*
 %{_libdir}/%{name}/scm
@@ -189,10 +178,10 @@ rm -f %{buildroot}%{_bindir}/gnc-test-env
 %{_datadir}/%{name}/accounts
 %{_datadir}/%{name}/checks
 %{_datadir}/%{name}/gtkbuilder
+%{_datadir}/%{name}/icons
 %{_datadir}/%{name}/jqplot
 %{_datadir}/%{name}/pixmaps
 %{_datadir}/%{name}/ui
-%{_datadir}/%{name}/gnome
 %{_datadir}/%{name}/tip_of_the_day.list
 %{_datadir}/%{name}/make-prefs-migration-script.xsl
 %{_datadir}/%{name}/migratable-prefs.xml
@@ -223,17 +212,9 @@ rm -f %{buildroot}%{_bindir}/gnc-test-env
 %endif
 
 %files -n %{libname}
-%{_libdir}/libgnc-backend-sql.so.%{major}*
-%{_libdir}/libgnc-backend-xml-utils.so.%{major}*
-%{_libdir}/libgnc-business-ledger.so.%{major}*
-%{_libdir}/libgnc-core-utils.so.%{major}*
-%{_libdir}/libgnc-gnome.so.%{major}*
-%{_libdir}/libgnc-module.so.%{major}*
-%{_libdir}/libgnc-qof.so.1*
 %{_libdir}/lib*.so
 
 %files -n %{devname}
-%{_bindir}/gnucash-make-guids
 %{_bindir}/gnucash-valgrind
 %{_includedir}/gnucash
 
