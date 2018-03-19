@@ -1,5 +1,6 @@
 removed_sources:
+  gnucash-2.7.6.tar.bz2: c9f27303bb178a02de5d8f03cba7bcc700cdb532
   gnucash-docs-2.6.15.tar.gz: 8a5212629687ccae3c26ec63c35c06323357aa26
 sources:
-  gnucash-2.7.6.tar.bz2: c9f27303bb178a02de5d8f03cba7bcc700cdb532
+  gnucash-2.7.7.tar.bz2: 4d95e0e21406db19c7930a977c708b06e7d5e72f
   gnucash-docs-2.6.19.tar.gz: f09f3d718887943602067609bec607fbed6ee05e
