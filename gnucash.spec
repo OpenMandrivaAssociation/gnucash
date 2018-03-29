@@ -35,6 +35,7 @@ BuildRequires:	pkgconfig(webkit2gtk-4.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	gmock-devel
 BuildRequires:	gmock-source
+BuildRequires:	boost-devel
 Requires:	libdbi-drivers-dbd-sqlite3
 Requires:	guile-runtime
 Requires:	slib
