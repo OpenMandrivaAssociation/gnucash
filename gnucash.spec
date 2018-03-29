@@ -6,6 +6,8 @@
 %define doc_version 2.6.19
 %define build_hbci 1
 
+%define _cmake_skip_rpath %nil
+
 %define __noautoreq 'devel\\(libgncmod(.*)\\)|libgnc.*so$|devel\\(lib(gnc|cairo|gdk|glib|gmodule|gobject|gtk|guile|m|pango|xml2|z)(.*)\\)'
 %define __noautoprov 'devel\\(libgnc(.*)\\)'
 
