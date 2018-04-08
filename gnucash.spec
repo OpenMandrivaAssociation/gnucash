@@ -3,7 +3,7 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
 
-%define doc_version 2.6.19
+%define doc_version 3.0
 %define build_hbci 1
 
 %define _cmake_skip_rpath %nil
@@ -13,14 +13,15 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	2.7.8
-Release:	2
+Version:	3.0
+Release:	1
 License:	GPLv2+
 Group:		Office
 Url:		http://www.gnucash.org/
 Source0:	http://downloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4:	http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.gz
 Source100:	gnucash.rpmlintrc
+Patch1:		gnucash-official.patch
 BuildRequires:	cmake
 BuildRequires:	desktop-file-utils
 BuildRequires:	rarian
@@ -42,6 +43,7 @@ Requires:	libdbi-drivers-dbd-sqlite3
 Requires:	guile-runtime
 Requires:	slib
 Requires:	yelp
+Requires:	%{libname} = %{version}-%{release}
 Suggests:	perl-Finance-Quote
 %rename gnucash-sql
 
