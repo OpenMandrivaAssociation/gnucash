@@ -30,13 +30,19 @@ BuildRequires:	xsltproc
 BuildRequires:	dbi-devel
 BuildRequires:	libdbi-drivers-dbd-sqlite3
 BuildRequires:	gettext-devel
-BuildRequires:	pkgconfig(guile-2.0)
 BuildRequires:	pkgconfig(ktoblzcheck)
 BuildRequires:	pkgconfig(libofx)
 BuildRequires:	pkgconfig(webkit2gtk-4.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
+%if %mdvver > 3000000
+BuildRequires:  pkgconfig(guile-2.2)
+BuildRequires:  gtest-devel
+BuildRequires:  gtest-source
+%else
+BuildRequires:  pkgconfig(guile-2.0)
 BuildRequires:	gmock-devel
 BuildRequires:	gmock-source
+%endif
 BuildRequires:	boost-devel
 Requires:	libdbi-drivers-dbd-sqlite3
 Requires:	guile-runtime
