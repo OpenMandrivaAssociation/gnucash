@@ -47,6 +47,7 @@ BuildRequires:	gmock-devel
 BuildRequires:	gmock-source
 %endif
 BuildRequires:	boost-devel
+BuildRequires:	gmp-devel
 Requires:	libdbi-drivers-dbd-sqlite3
 Requires:	guile-runtime
 Requires:	slib
