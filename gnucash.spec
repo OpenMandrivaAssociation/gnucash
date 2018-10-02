@@ -157,8 +157,7 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %endif
 
 %files -f %{name}.lang
-%doc AUTHORS LICENSE HACKING NEWS README*
-%doc doc/README.german doc/README.francais doc/guile-hackers.txt
+%doc %{_datadir}/doc/gnucash/*
 %{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.business.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.checkprinting.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.commodities.gschema.xml
