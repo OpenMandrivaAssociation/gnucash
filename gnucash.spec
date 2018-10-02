@@ -35,6 +35,8 @@ BuildRequires:	pkgconfig(ktoblzcheck)
 BuildRequires:	pkgconfig(libofx)
 BuildRequires:	pkgconfig(webkit2gtk-4.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
+BuildRequires:	pkgconfig(libxslt)
+BuildRequires:	pkgconfig(libxml-2.0)
 %if %mdvver > 3000000
 BuildRequires:  pkgconfig(guile-2.2)
 BuildRequires:  gtest-devel
