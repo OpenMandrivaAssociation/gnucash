@@ -3,7 +3,7 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
 
-%define doc_version 3.3
+%define doc_version 3.6
 %define build_hbci 1
 
 %define _cmake_skip_rpath %nil
@@ -13,8 +13,8 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	3.3
-Release:	2
+Version:	3.6
+Release:	1
 License:	GPLv2+
 Group:		Office
 Url:		http://www.gnucash.org/
@@ -128,7 +128,7 @@ popd
 %makeinstall_std -C build
 
 pushd gnucash-docs-%{doc_version}
-%makeinstall_std
+%make_install
 popd
 
 rm -f %{buildroot}%{_infodir}/dir
