@@ -21,7 +21,7 @@ Url:		http://www.gnucash.org/
 Source0:	http://downloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4:	http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.gz
 Source100:	gnucash.rpmlintrc
-Patch1:		gnucash-3.3-loglevel_enum.patch
+#Patch1:		gnucash-3.3-loglevel_enum.patch
 BuildRequires:	cmake
 BuildRequires:	desktop-file-utils
 BuildRequires:	rarian
