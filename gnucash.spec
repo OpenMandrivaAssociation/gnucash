@@ -210,7 +210,6 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %exclude %{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
 
 %files ofx
-%doc doc/README.OFX
 %{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.import.ofx.gschema.xml
 %{_libdir}/gnucash/libgncmod-ofx*
 %{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
