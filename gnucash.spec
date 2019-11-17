@@ -199,6 +199,7 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %{_datadir}/%{name}/make-prefs-migration-script.xsl
 %{_datadir}/%{name}/migratable-prefs.xml
 %{_datadir}/%{name}/scm
+%{_datadir}/metainfo/gnucash.appdata.xml
 %{_iconsdir}/hicolor/*/apps/gnucash*
 %{_mandir}/*/*
 
