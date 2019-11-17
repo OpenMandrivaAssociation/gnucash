@@ -216,7 +216,6 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 %if %{build_hbci}
 %files hbci
-%doc doc/README.HBCI
 %{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.import.hbci.gschema.xml
 %{_libdir}/gnucash/libgncmod-aqbanking*
 %{_datadir}/gnucash/ui/gnc-plugin-aqbanking-ui.xml
