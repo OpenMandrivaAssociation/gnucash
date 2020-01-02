@@ -109,6 +109,8 @@ This package provides libraries to use gnucash.
 %setup -q -a 4
 %autopatch -p1
 
+sed -e 's|-Werror||g' -i CMakeLists.txt
+
 %build
 # set HAVE_GWEN_GTK3 as it tries to build its own otherwise
 # but we have necessary patches in gwenhywfar
