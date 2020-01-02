@@ -3,7 +3,7 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
 
-%define doc_version 3.7
+%define doc_version 3.8
 %define build_hbci 1
 
 %define _cmake_skip_rpath %nil
@@ -13,12 +13,12 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	3.7
+Version:	3.8
 Release:	1
 License:	GPLv2+
 Group:		Office
 Url:		http://www.gnucash.org/
-Source0:	http://downloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
+Source0:	http://downloads.sourceforge.net/gnucash/%{name}-%{version}b.tar.bz2
 Source4:	http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.gz
 Source100:	gnucash.rpmlintrc
 #Patch1:		gnucash-3.3-loglevel_enum.patch
@@ -107,7 +107,7 @@ This package provides libraries to use gnucash.
 
 %prep
 %setup -q -a 4
-%apply_patches
+%autopatch -p1
 
 %build
 # set HAVE_GWEN_GTK3 as it tries to build its own otherwise
