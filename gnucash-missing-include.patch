@@ -1,0 +1,12 @@
+diff --git a/gnucash/import-export/csv-imp/gnc-imp-settings-csv.hpp b/gnucash/import-export/csv-imp/gnc-imp-settings-csv.hpp
+index fa283bf..241c897 100644
+--- a/gnucash/import-export/csv-imp/gnc-imp-settings-csv.hpp
++++ b/gnucash/import-export/csv-imp/gnc-imp-settings-csv.hpp
+@@ -36,6 +36,7 @@ extern "C" {
+ 
+ #include <string>
+ #include <vector>
++#include <algorithm>
+ #include <boost/optional.hpp>
+ #include <gnc-datetime.hpp>
+ #include "gnc-tokenizer.hpp"
