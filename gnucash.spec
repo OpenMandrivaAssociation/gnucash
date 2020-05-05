@@ -21,6 +21,7 @@ Url:		http://www.gnucash.org/
 Source0:	http://downloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4:	http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.gz
 Source100:	gnucash.rpmlintrc
+Patch0:		gnucash-missing-include.patch
 BuildRequires:	cmake
 BuildRequires:	desktop-file-utils
 BuildRequires:	rarian
@@ -126,7 +127,7 @@ make
 popd
 
 %install
-%makeinstall_std -C build
+%make_install -C build
 
 pushd gnucash-docs-%{doc_version}
 %make_install
