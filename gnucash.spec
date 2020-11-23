@@ -5,6 +5,7 @@
 
 %define doc_version 4.2
 %define build_hbci 1
+%global guileapi 3.0
 
 %define _cmake_skip_rpath %nil
 
@@ -21,7 +22,6 @@ Url:		http://www.gnucash.org/
 Source0:	http://downloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4:	http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.gz
 Source100:	gnucash.rpmlintrc
-Patch0:		gnucash-missing-include.patch
 BuildRequires:	cmake
 BuildRequires:	desktop-file-utils
 BuildRequires:	rarian
@@ -40,7 +40,7 @@ BuildRequires:	pkgconfig(webkit2gtk-4.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(libxslt)
 BuildRequires:	pkgconfig(libxml-2.0)
-BuildRequires:  pkgconfig(guile-3.0)
+BuildRequires:  pkgconfig(guile-%{guileapi})
 BuildRequires:  gtest-devel
 BuildRequires:  gtest-source
 BuildRequires:	boost-devel
@@ -178,26 +178,25 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 %config(noreplace) %{_sysconfdir}/%{name}
 %{_bindir}/gnucash
+%{_bindir}/gnucash-cli
 %{_bindir}/gnc-fq-check
 %{_bindir}/gnc-fq-dump
 %{_bindir}/gnc-fq-helper
 %{_bindir}/gnc-fq-update
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/guile/site/%{guileapi}/%{name}
 %dir %{_libdir}/gnucash
 %{_libdir}/gnucash/*.so*
-%{_libdir}/%{name}/scm
+%{_libdir}/guile/%{guileapi}/site-ccache/gnucash/
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/accounts
+%{_datadir}/%{name}/chartjs
 %{_datadir}/%{name}/checks
 %{_datadir}/%{name}/gtkbuilder
 %{_datadir}/%{name}/icons
-%{_datadir}/%{name}/jqplot
 %{_datadir}/%{name}/pixmaps
 %{_datadir}/%{name}/ui
 %{_datadir}/%{name}/tip_of_the_day.list
-%{_datadir}/%{name}/make-prefs-migration-script.xsl
-%{_datadir}/%{name}/migratable-prefs.xml
-%{_datadir}/%{name}/scm
 %{_datadir}/metainfo/gnucash.appdata.xml
 %{_iconsdir}/hicolor/*/apps/gnucash*
 %{_mandir}/*/*
