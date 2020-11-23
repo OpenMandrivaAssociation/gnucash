@@ -3,7 +3,7 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
 
-%define doc_version 3.8
+%define doc_version 4.2
 %define build_hbci 1
 
 %define _cmake_skip_rpath %nil
@@ -13,8 +13,8 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	3.10
-Release:	2
+Version:	4.2
+Release:	1
 License:	GPLv2+
 Group:		Office
 Url:		http://www.gnucash.org/
@@ -30,22 +30,19 @@ BuildRequires:	swig
 BuildRequires:	xsltproc
 BuildRequires:	dbi-devel
 BuildRequires:	libdbi-drivers-dbd-sqlite3
+BuildRequires:  libdbi-drivers-dbd-mysql
+BuildRequires:  libdbi-drivers-dbd-pgsql
 BuildRequires:	gettext-devel
+BuildRequires:  pkgconfig(dbi) >= 0.9.0
 BuildRequires:	pkgconfig(ktoblzcheck)
 BuildRequires:	pkgconfig(libofx)
 BuildRequires:	pkgconfig(webkit2gtk-4.0)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(libxslt)
 BuildRequires:	pkgconfig(libxml-2.0)
-%if %mdvver > 3000000
-BuildRequires:  pkgconfig(guile-2.2)
+BuildRequires:  pkgconfig(guile-3.0)
 BuildRequires:  gtest-devel
 BuildRequires:  gtest-source
-%else
-BuildRequires:  pkgconfig(guile-2.0)
-BuildRequires:	gmock-devel
-BuildRequires:	gmock-source
-%endif
 BuildRequires:	boost-devel
 BuildRequires:	gmp-devel
 Requires:	libdbi-drivers-dbd-sqlite3
@@ -114,7 +111,7 @@ sed -e 's|-Werror||g' -i CMakeLists.txt
 %build
 # set HAVE_GWEN_GTK3 as it tries to build its own otherwise
 # but we have necessary patches in gwenhywfar
-%cmake -DHAVE_GWEN_GTK3=1
+%cmake -DHAVE_GWEN_GTK3=1 -DCOMPILE_GSCHEMAS=OFF -DGNC_DBD_DIR=%{_libdir}/dbd
 
 %make
 
