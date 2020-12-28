@@ -175,6 +175,7 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %{_datadir}/glib-2.0/schemas/org.gnucash.window.pages.account.tree.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gnucash.window.pages.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gnucash.general.finance-quote.gschema.xml
+%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.flicker.gschema.xml
 
 
 %config(noreplace) %{_sysconfdir}/%{name}
