@@ -33,6 +33,7 @@ BuildRequires:	libdbi-drivers-dbd-sqlite3
 BuildRequires:  libdbi-drivers-dbd-mysql
 BuildRequires:  libdbi-drivers-dbd-pgsql
 BuildRequires:	gettext-devel
+BuildRequires:	pkgconfig(atomic_ops)
 BuildRequires:  pkgconfig(dbi) >= 0.9.0
 BuildRequires:	pkgconfig(ktoblzcheck)
 BuildRequires:	pkgconfig(libofx)
