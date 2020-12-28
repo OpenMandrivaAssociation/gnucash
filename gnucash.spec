@@ -3,7 +3,7 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
 
-%define doc_version 4.2
+%define doc_version 4.3
 %define build_hbci 1
 %global guileapi 3.0
 
@@ -14,7 +14,7 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	4.2
+Version:	4.3
 Release:	1
 License:	GPLv2+
 Group:		Office
@@ -33,6 +33,7 @@ BuildRequires:	libdbi-drivers-dbd-sqlite3
 BuildRequires:  libdbi-drivers-dbd-mysql
 BuildRequires:  libdbi-drivers-dbd-pgsql
 BuildRequires:	gettext-devel
+BuildRequires:	pkgconfig(atomic_ops)
 BuildRequires:  pkgconfig(dbi) >= 0.9.0
 BuildRequires:	pkgconfig(ktoblzcheck)
 BuildRequires:	pkgconfig(libofx)
@@ -174,6 +175,7 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %{_datadir}/glib-2.0/schemas/org.gnucash.window.pages.account.tree.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gnucash.window.pages.gschema.xml
 %{_datadir}/glib-2.0/schemas/org.gnucash.general.finance-quote.gschema.xml
+%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.flicker.gschema.xml
 
 
 %config(noreplace) %{_sysconfdir}/%{name}
