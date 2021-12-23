@@ -158,25 +158,6 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 %files -f %{name}.lang
 %doc %{_datadir}/doc/gnucash/*
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.business.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.checkprinting.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.commodities.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.export.csv.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.import.csv.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.import.generic.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.import.qif.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.reconcile.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.sxs.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.totd.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.history.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.warnings.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.window.pages.account.tree.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.window.pages.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.general.finance-quote.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.flicker.gschema.xml
-
 
 %config(noreplace) %{_sysconfdir}/%{name}
 %{_bindir}/gnucash
