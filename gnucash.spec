@@ -192,13 +192,11 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %exclude %{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
 
 %files ofx
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.import.ofx.gschema.xml
 %{_libdir}/gnucash/libgncmod-ofx*
 %{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
 
 %if %{build_hbci}
 %files hbci
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.import.hbci.gschema.xml
 %{_libdir}/gnucash/libgncmod-aqbanking*
 %{_datadir}/gnucash/ui/gnc-plugin-aqbanking-ui.xml
 %endif
