@@ -158,7 +158,7 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 %files -f %{name}.lang
 %doc %{_datadir}/doc/gnucash/*
-
+%{_datadir}/glib-2.0/schemas/org.gnucash.GnuCash.*
 %config(noreplace) %{_sysconfdir}/%{name}
 %{_bindir}/gnucash
 %{_bindir}/gnucash-cli
@@ -181,6 +181,7 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %{_datadir}/%{name}/ui
 %{_datadir}/%{name}/tip_of_the_day.list
 %{_datadir}/metainfo/gnucash.appdata.xml
+%{_datadir}/gnucash/pref_transformations.xml
 %{_iconsdir}/hicolor/*/apps/gnucash*
 %{_mandir}/*/*
 
