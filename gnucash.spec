@@ -14,8 +14,8 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	4.5
-Release:	2
+Version:	4.9
+Release:	1
 License:	GPLv2+
 Group:		Office
 Url:		http://www.gnucash.org/
@@ -158,26 +158,7 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 %files -f %{name}.lang
 %doc %{_datadir}/doc/gnucash/*
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.business.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.checkprinting.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.commodities.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.export.csv.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.import.csv.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.import.generic.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.import.qif.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.reconcile.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.sxs.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.totd.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.history.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.warnings.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.window.pages.account.tree.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.window.pages.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.general.finance-quote.gschema.xml
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.flicker.gschema.xml
-
-
+%{_datadir}/glib-2.0/schemas/org.gnucash.GnuCash.*
 %config(noreplace) %{_sysconfdir}/%{name}
 %{_bindir}/gnucash
 %{_bindir}/gnucash-cli
@@ -200,6 +181,7 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %{_datadir}/%{name}/ui
 %{_datadir}/%{name}/tip_of_the_day.list
 %{_datadir}/metainfo/gnucash.appdata.xml
+%{_datadir}/gnucash/pref_transformations.xml
 %{_iconsdir}/hicolor/*/apps/gnucash*
 %{_mandir}/*/*
 
@@ -211,13 +193,11 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %exclude %{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
 
 %files ofx
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.import.ofx.gschema.xml
 %{_libdir}/gnucash/libgncmod-ofx*
 %{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
 
 %if %{build_hbci}
 %files hbci
-%{_datadir}/glib-2.0/schemas/org.gnucash.dialogs.import.hbci.gschema.xml
 %{_libdir}/gnucash/libgncmod-aqbanking*
 %{_datadir}/gnucash/ui/gnc-plugin-aqbanking-ui.xml
 %endif
