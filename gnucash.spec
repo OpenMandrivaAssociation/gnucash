@@ -22,7 +22,7 @@ Url:		http://www.gnucash.org/
 Source0:	http://downloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4:	http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.gz
 Source100:	gnucash.rpmlintrc
-BuildRequires:	cmake
+BuildRequires:	cmake ninja
 BuildRequires:	desktop-file-utils
 BuildRequires:	rarian
 BuildRequires:	slib
@@ -114,9 +114,14 @@ sed -e 's|-Werror||g' -i CMakeLists.txt
 %build
 # set HAVE_GWEN_GTK3 as it tries to build its own otherwise
 # but we have necessary patches in gwenhywfar
-%cmake -DHAVE_GWEN_GTK3=1 -DCOMPILE_GSCHEMAS=OFF -DGNC_DBD_DIR=%{_libdir}/dbd
+%cmake -DHAVE_GWEN_GTK3=1 -DCOMPILE_GSCHEMAS=OFF -DGNC_DBD_DIR=%{_libdir}/dbd -G Ninja || :
+if ! [ -e build.ninja ]; then
+	cat CMakeFiles/CMakeError.log
+	cat CMakeFiles/CMakeOutput.log
+	exit 1
+fi
 
-%make
+%ninja_build
 
 cd ..
 
@@ -127,7 +132,7 @@ make
 popd
 
 %install
-%make_install -C build
+%ninja_install -C build
 
 pushd gnucash-docs-%{doc_version}
 %make_install
