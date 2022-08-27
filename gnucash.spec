@@ -112,6 +112,12 @@ This package provides libraries to use gnucash.
 sed -e 's|-Werror||g' -i CMakeLists.txt
 
 %build
+# Let's try to see what's wrong with guile detection
+# if and only if running inside abf...
+guile --version
+echo -n "Guile prefix is: "
+guile -c "(display (assoc-ref %%guile-build-info 'prefix))"
+
 # set HAVE_GWEN_GTK3 as it tries to build its own otherwise
 # but we have necessary patches in gwenhywfar
 %cmake -DHAVE_GWEN_GTK3=1 -DCOMPILE_GSCHEMAS=OFF -DGNC_DBD_DIR=%{_libdir}/dbd -G Ninja || :
