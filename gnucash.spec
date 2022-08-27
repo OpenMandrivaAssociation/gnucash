@@ -42,6 +42,7 @@ BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(libxslt)
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(guile-%{guileapi})
+BuildRequires:	pkgconfig(libsecret-1)
 BuildRequires:  gtest-devel
 BuildRequires:  gtest-source
 BuildRequires:	boost-devel
