@@ -48,6 +48,7 @@ BuildRequires:  gtest-devel
 BuildRequires:  gtest-source
 BuildRequires:	boost-devel
 BuildRequires:	gmp-devel
+BuildRequires:	strace
 Requires:	libdbi-drivers-dbd-sqlite3
 Requires:	guile-runtime
 Requires:	slib
@@ -114,7 +115,7 @@ sed -e 's|-Werror||g' -i CMakeLists.txt
 %build
 # Let's try to see what's wrong with guile detection
 # if and only if running inside abf...
-guile --version
+strace -f guile --version
 echo -n "Guile prefix is: "
 guile -c "(display (assoc-ref %%guile-build-info 'prefix))"
 
