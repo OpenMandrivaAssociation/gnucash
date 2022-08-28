@@ -50,9 +50,10 @@ BuildRequires:	boost-devel
 BuildRequires:	gmp-devel
 BuildRequires:	strace
 # guile sucks
-BuildRequires:	locale-extra-charsets
+BuildRequires:	locales-extra-charsets
 Requires:	libdbi-drivers-dbd-sqlite3
 Requires:	guile-runtime
+Requires:	locales-extra-charsets
 Requires:	slib
 Requires:	yelp
 Requires:	%{libname} = %{version}-%{release}
