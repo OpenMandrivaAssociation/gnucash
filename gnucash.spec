@@ -49,6 +49,8 @@ BuildRequires:  gtest-source
 BuildRequires:	boost-devel
 BuildRequires:	gmp-devel
 BuildRequires:	strace
+# guile sucks
+BuildRequires:	locale-extra-charsets
 Requires:	libdbi-drivers-dbd-sqlite3
 Requires:	guile-runtime
 Requires:	slib
