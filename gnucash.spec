@@ -178,9 +178,6 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %config(noreplace) %{_sysconfdir}/%{name}
 %{_bindir}/gnucash
 %{_bindir}/gnucash-cli
-%{_bindir}/gnc-fq-check
-%{_bindir}/gnc-fq-dump
-%{_bindir}/gnc-fq-helper
 %{_bindir}/gnc-fq-update
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/guile/site/%{guileapi}/%{name}
@@ -194,7 +191,7 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %{_datadir}/%{name}/gtkbuilder
 %{_datadir}/%{name}/icons
 %{_datadir}/%{name}/pixmaps
-%{_datadir}/%{name}/ui
+#{_datadir}/%{name}/ui
 %{_datadir}/%{name}/tip_of_the_day.list
 %{_datadir}/metainfo/gnucash.appdata.xml
 %{_datadir}/gnucash/pref_transformations.xml
