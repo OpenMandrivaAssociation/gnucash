@@ -144,7 +144,7 @@ popd
 %ninja_install -C build
 
 pushd gnucash-docs-%{doc_version}
-%make_install _C build
+%make_install -C build
 popd
 
 rm -f %{buildroot}%{_infodir}/dir
