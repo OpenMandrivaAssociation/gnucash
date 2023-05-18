@@ -3,7 +3,7 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
 
-%define doc_version 4.5
+%define doc_version 5.1
 %define build_hbci 1
 %global guileapi 3.0
 
@@ -14,8 +14,8 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	4.13
-Release:	3
+Version:	5.1
+Release:	1
 License:	GPLv2+
 Group:		Office
 Url:		http://www.gnucash.org/
