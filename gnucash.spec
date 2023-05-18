@@ -136,16 +136,15 @@ fi
 cd ..
 
 pushd gnucash-docs-%{doc_version}
-%configure \
-	--localstatedir=/var/lib
-make
+%cmake
+%make_build
 popd
 
 %install
 %ninja_install -C build
 
 pushd gnucash-docs-%{doc_version}
-%make_install
+%make_install _C build
 popd
 
 rm -f %{buildroot}%{_infodir}/dir
