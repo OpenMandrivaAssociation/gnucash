@@ -139,8 +139,6 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 %preun
 %preun_uninstall_gconf_schemas %schemas
-
-%preun hbci
 %preun_uninstall_gconf_schemas apps_gnucash_dialog_hbci
 
 %files -f %{name}.lang
