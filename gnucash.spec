@@ -65,6 +65,12 @@ Suggests:	perl-Finance-Quote
 #gw it really required qt3-wizard which wasn't included in aqbanking for a while
 Requires:	aqhbci
 
+%description
+GnuCash is a personal finance manager. A check-book like
+register GUI allows you to enter and track bank accounts,
+stocks, income and even currency trades. The interface is
+designed to be simple and easy to use, but is backed with
+double-entry accounting principles to ensure balanced books.
 
 %package -n %{devname}
 Group:		Development/C
