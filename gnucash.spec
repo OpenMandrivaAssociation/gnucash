@@ -3,7 +3,7 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
 
-%define doc_version 4.5
+%define doc_version 5.1
 %define build_hbci 1
 %global guileapi 3.0
 
@@ -14,8 +14,8 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	4.13
-Release:	3
+Version:	5.1
+Release:	1
 License:	GPLv2+
 Group:		Office
 Url:		http://www.gnucash.org/
@@ -38,12 +38,13 @@ BuildRequires:	pkgconfig(atomic_ops)
 BuildRequires:  pkgconfig(dbi) >= 0.9.0
 BuildRequires:	pkgconfig(ktoblzcheck)
 BuildRequires:	pkgconfig(libofx)
-BuildRequires:	pkgconfig(webkit2gtk-4.0)
+BuildRequires:	pkgconfig(webkit2gtk-4.1)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(libxslt)
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(guile-%{guileapi})
 BuildRequires:	pkgconfig(libsecret-1)
+BuildRequires:	pkgconfig(aqbanking)
 BuildRequires:  gtest-devel
 BuildRequires:  gtest-source
 BuildRequires:	boost-devel
@@ -60,38 +61,16 @@ Requires:	%{libname} = %{version}-%{release}
 Suggests:	perl-Finance-Quote
 %rename gnucash-sql
 
+# only require the wizard, it will pull aqhbci package too 
+#gw it really required qt3-wizard which wasn't included in aqbanking for a while
+Requires:	aqhbci
+
 %description
 GnuCash is a personal finance manager. A check-book like
 register GUI allows you to enter and track bank accounts,
 stocks, income and even currency trades. The interface is
 designed to be simple and easy to use, but is backed with
 double-entry accounting principles to ensure balanced books.
-
-%package ofx
-Summary:	Enables OFX importing in GnuCash
-Group:		Office
-Requires:	%{name} = %{version}-%{release}
-
-%description ofx
-This package adds OFX file import support to the base
-GnuCash package. Install this package if you want to
-import OFX files.
-
-%if %{build_hbci}
-%package hbci
-Summary:	Enables HBCI importing in GnuCash
-Group:		Office
-Requires:	%{name} = %{version}-%{release}
-BuildRequires:	pkgconfig(aqbanking)
-# only require the wizard, it will pull aqhbci package too 
-#gw it really required qt3-wizard which wasn't included in aqbanking for a while
-Requires:	aqhbci
-
-%description hbci
-This package adds HBCI file import support to the base
-GnuCash package. Install this package if you want to
-import HBCI files.
-%endif
 
 %package -n %{devname}
 Group:		Development/C
@@ -136,16 +115,15 @@ fi
 cd ..
 
 pushd gnucash-docs-%{doc_version}
-%configure \
-	--localstatedir=/var/lib
-make
+%cmake
+%make_build
 popd
 
 %install
 %ninja_install -C build
 
 pushd gnucash-docs-%{doc_version}
-%make_install
+%make_install -C build
 popd
 
 rm -f %{buildroot}%{_infodir}/dir
@@ -167,22 +145,17 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 %preun
 %preun_uninstall_gconf_schemas %schemas
-
-%if %build_hbci
-%preun hbci
 %preun_uninstall_gconf_schemas apps_gnucash_dialog_hbci
-%endif
 
 %files -f %{name}.lang
 %doc %{_datadir}/doc/gnucash/*
+%doc %{_datadir}/gnucash-docs/		
 %{_datadir}/glib-2.0/schemas/org.gnucash.GnuCash.*
 %config(noreplace) %{_sysconfdir}/%{name}
 %{_bindir}/gnucash
 %{_bindir}/gnucash-cli
-%{_bindir}/gnc-fq-check
-%{_bindir}/gnc-fq-dump
-%{_bindir}/gnc-fq-helper
 %{_bindir}/gnc-fq-update
+%{_bindir}/finance-quote-wrapper	
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/guile/site/%{guileapi}/%{name}
 %dir %{_libdir}/gnucash
@@ -195,29 +168,12 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %{_datadir}/%{name}/gtkbuilder
 %{_datadir}/%{name}/icons
 %{_datadir}/%{name}/pixmaps
-%{_datadir}/%{name}/ui
+%{_datadir}/gnucash/ui/
 %{_datadir}/%{name}/tip_of_the_day.list
 %{_datadir}/metainfo/gnucash.appdata.xml
 %{_datadir}/gnucash/pref_transformations.xml
 %{_iconsdir}/hicolor/*/apps/gnucash*
 %{_mandir}/*/*
-
-%exclude %{_libdir}/gnucash/libgncmod-ofx*
-%if %{build_hbci}
-%exclude %{_libdir}/gnucash/libgncmod-aqbanking*
-%exclude %{_datadir}/gnucash/ui/gnc-plugin-aqbanking-ui.xml
-%endif
-%exclude %{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
-
-%files ofx
-%{_libdir}/gnucash/libgncmod-ofx*
-%{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
-
-%if %{build_hbci}
-%files hbci
-%{_libdir}/gnucash/libgncmod-aqbanking*
-%{_datadir}/gnucash/ui/gnc-plugin-aqbanking-ui.xml
-%endif
 
 %files -n %{libname}
 %{_libdir}/lib*.so
