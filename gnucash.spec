@@ -38,7 +38,7 @@ BuildRequires:	pkgconfig(atomic_ops)
 BuildRequires:  pkgconfig(dbi) >= 0.9.0
 BuildRequires:	pkgconfig(ktoblzcheck)
 BuildRequires:	pkgconfig(libofx)
-BuildRequires:	pkgconfig(webkit2gtk-4.0)
+BuildRequires:	pkgconfig(webkit2gtk-4.1)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(libxslt)
 BuildRequires:	pkgconfig(libxml-2.0)
@@ -174,11 +174,13 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 %files -f %{name}.lang
 %doc %{_datadir}/doc/gnucash/*
+%doc %{_datadir}/gnucash-docs/		
 %{_datadir}/glib-2.0/schemas/org.gnucash.GnuCash.*
 %config(noreplace) %{_sysconfdir}/%{name}
 %{_bindir}/gnucash
 %{_bindir}/gnucash-cli
 %{_bindir}/gnc-fq-update
+%{_bindir}/finance-quote-wrapper	
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/guile/site/%{guileapi}/%{name}
 %dir %{_libdir}/gnucash
@@ -191,7 +193,7 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %{_datadir}/%{name}/gtkbuilder
 %{_datadir}/%{name}/icons
 %{_datadir}/%{name}/pixmaps
-#{_datadir}/%{name}/ui
+%{_datadir}/gnucash/ui/
 %{_datadir}/%{name}/tip_of_the_day.list
 %{_datadir}/metainfo/gnucash.appdata.xml
 %{_datadir}/gnucash/pref_transformations.xml
