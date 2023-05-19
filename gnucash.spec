@@ -200,12 +200,12 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %{_iconsdir}/hicolor/*/apps/gnucash*
 %{_mandir}/*/*
 
-%exclude %{_libdir}/gnucash/libgncmod-ofx*
-%if %{build_hbci}
-%exclude %{_libdir}/gnucash/libgncmod-aqbanking*
-%exclude %{_datadir}/gnucash/ui/gnc-plugin-aqbanking-ui.xml
-%endif
-%exclude %{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
+#exclude %{_libdir}/gnucash/libgncmod-ofx*
+#if %{build_hbci}
+#exclude %{_libdir}/gnucash/libgncmod-aqbanking*
+#exclude %{_datadir}/gnucash/ui/gnc-plugin-aqbanking-ui.xml
+#endif
+#exclude %{_datadir}/gnucash/ui/gnc-plugin-ofx-ui.xml
 
 %files ofx
 #{_libdir}/gnucash/libgncmod-ofx*
