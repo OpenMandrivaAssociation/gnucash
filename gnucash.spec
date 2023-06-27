@@ -3,7 +3,7 @@
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
 
-%define doc_version 5.3
+%define doc_version 5.2
 %define build_hbci 1
 %global guileapi 3.0
 
