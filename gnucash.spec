@@ -15,7 +15,7 @@
 Summary:	Application to keep track of your finances
 Name:		gnucash
 Version:	5.9
-Release:	3
+Release:	4
 License:	GPLv2+
 Group:		Office
 Url:		https://www.gnucash.org/
