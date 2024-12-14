@@ -65,6 +65,9 @@ Suggests:	perl-Finance-Quote
 #gw it really required qt3-wizard which wasn't included in aqbanking for a while
 Requires:	aqhbci
 
+%patchlist
+gnucash-5.9-boost-1.87.patch
+
 %description
 GnuCash is a personal finance manager. A check-book like
 register GUI allows you to enter and track bank accounts,

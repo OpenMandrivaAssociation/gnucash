@@ -1,0 +1,12 @@
+diff -up gnucash-5.9/libgnucash/app-utils/gnc-quotes.cpp.omv~ gnucash-5.9/libgnucash/app-utils/gnc-quotes.cpp
+--- gnucash-5.9/libgnucash/app-utils/gnc-quotes.cpp.omv~	2024-12-14 01:41:07.073723971 +0100
++++ gnucash-5.9/libgnucash/app-utils/gnc-quotes.cpp	2024-12-14 01:41:11.977677969 +0100
+@@ -205,7 +205,7 @@ GncFQQuoteSource::run_cmd (const StrVec&
+     try
+     {
+         std::future<std::vector<char> > out_buf, err_buf;
+-        boost::asio::io_service svc;
++        boost::asio::io_context svc;
+ 
+         auto input_buf = bp::buffer (json_string);
+ 	bp::child process;
