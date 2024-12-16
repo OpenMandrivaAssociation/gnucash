@@ -1,9 +1,10 @@
 %define _disable_ld_no_undefined 1
 %define major	0
-%define libname %mklibname %{name} %{major}
+%define libname %mklibname %{name}
+%define oldlibname %mklibname %{name} 0
 %define devname %mklibname -d %{name}
 
-%define doc_version 5.8
+%define doc_version 5.10
 %define build_hbci 1
 %global guileapi 3.0
 
@@ -14,8 +15,8 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	5.9
-Release:	4
+Version:	5.10
+Release:	1
 License:	GPLv2+
 Group:		Office
 Url:		https://www.gnucash.org/
@@ -66,7 +67,6 @@ Suggests:	perl-Finance-Quote
 Requires:	aqhbci
 
 %patchlist
-gnucash-5.9-boost-1.87.patch
 
 %description
 GnuCash is a personal finance manager. A check-book like
@@ -87,6 +87,7 @@ Libraries needed to develop for gnucash.
 %package -n %{libname}
 Summary:	Libraries for gnucash
 Group:		System/Libraries
+%rename %{oldlibname}
 
 %description -n %{libname}
 This package provides libraries to use gnucash.
