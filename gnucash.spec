@@ -67,6 +67,7 @@ Suggests:	perl-Finance-Quote
 Requires:	aqhbci
 
 %patchlist
+gnucash-5.10-icu76.patch
 
 %description
 GnuCash is a personal finance manager. A check-book like

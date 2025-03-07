@@ -1,0 +1,22 @@
+diff -up gnucash-5.10/CMakeLists.txt.omv~ gnucash-5.10/CMakeLists.txt
+diff -up gnucash-5.10/gnucash/CMakeLists.txt.omv~ gnucash-5.10/gnucash/CMakeLists.txt
+--- gnucash-5.10/gnucash/CMakeLists.txt.omv~	2025-03-07 19:48:22.909045717 +0100
++++ gnucash-5.10/gnucash/CMakeLists.txt	2025-03-07 19:49:34.791100989 +0100
+@@ -110,7 +110,7 @@ target_link_libraries (gnucash
+    gnc-qif-import gnc-csv-import gnc-csv-export gnc-log-replay
+    gnc-bi-import gnc-customer-import gnc-report
+    PkgConfig::GTK3 ${GUILE_LDFLAGS} PkgConfig::GLIB2
+-   ${Boost_LIBRARIES}
++   ${Boost_LIBRARIES} icuuc
+ )
+ 
+ set(gnucash_cli_SOURCES
+@@ -143,7 +143,7 @@ target_link_libraries (gnucash-cli
+    gnc-app-utils
+    gnc-engine gnc-core-utils gnucash-guile gnc-report
+    ${GUILE_LDFLAGS} PkgConfig::GLIB2
+-   ${Boost_LIBRARIES}
++   ${Boost_LIBRARIES} icuuc
+ )
+ 
+ if (BUILDING_FROM_VCS)
