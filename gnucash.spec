@@ -4,7 +4,7 @@
 %define oldlibname %mklibname %{name} 0
 %define devname %mklibname -d %{name}
 
-%define doc_version 5.10
+%define doc_version %{version}
 %define build_hbci 1
 %global guileapi 3.0
 
@@ -15,8 +15,8 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	5.10
-Release:	3
+Version:	5.11
+Release:	1
 License:	GPLv2+
 Group:		Office
 Url:		https://www.gnucash.org/
@@ -68,6 +68,7 @@ Requires:	aqhbci
 
 %patchlist
 gnucash-5.10-icu76.patch
+gnucash-5.11-boost-1.88.patch
 
 %description
 GnuCash is a personal finance manager. A check-book like
@@ -186,4 +187,3 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %files -n %{devname}
 %{_bindir}/gnucash-valgrind
 %{_includedir}/gnucash
-
