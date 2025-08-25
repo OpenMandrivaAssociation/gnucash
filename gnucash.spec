@@ -68,7 +68,6 @@ Requires:	aqhbci
 
 %patchlist
 gnucash-5.10-icu76.patch
-gnucash-5.11-boost-1.88.patch
 gnucash-boost-1.89.patch
 
 %description
