@@ -15,15 +15,20 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	5.12
-Release:	2
+Version:	5.13
+Release:	1
 License:	GPLv2+
 Group:		Office
 Url:		https://www.gnucash.org/
 Source0:	http://downloads.sourceforge.net/gnucash/%{name}-%{version}.tar.bz2
 Source4:	http://downloads.sourceforge.net/gnucash/%{name}-docs-%{doc_version}.tar.gz
 Source100:	gnucash.rpmlintrc
-BuildRequires:	cmake ninja
+BuildSystem:	cmake
+# set HAVE_GWEN_GTK3 as it tries to build its own otherwise
+# but we have necessary patches in gwenhywfar
+BuildOption:	-DHAVE_GWEN_GTK3=1
+BuildOption:	-DCOMPILE_GSCHEMAS=OFF
+BuildOption:	-DGNC_DBD_DIR=%{_libdir}/dbd
 BuildRequires:	desktop-file-utils
 BuildRequires:	rarian
 BuildRequires:	slib
@@ -50,7 +55,6 @@ BuildRequires:  gtest-devel
 BuildRequires:  gtest-source
 BuildRequires:	boost-devel
 BuildRequires:	gmp-devel
-BuildRequires:	strace
 # guile sucks
 BuildRequires:	locales-extra-charsets
 Requires:	libdbi-drivers-dbd-sqlite3
@@ -94,42 +98,19 @@ Group:		System/Libraries
 %description -n %{libname}
 This package provides libraries to use gnucash.
 
-%prep
-%setup -q -a 4
-%autopatch -p1
-
+%prep -a
+tar xf %{S:4}
 sed -e 's|-Werror||g' -i CMakeLists.txt
 
-%build
-# Let's try to see what's wrong with guile detection
-# if and only if running inside abf...
-strace -f guile --version
-echo -n "Guile prefix is: "
-guile -c "(display (assoc-ref %%guile-build-info 'prefix))"
-
-# set HAVE_GWEN_GTK3 as it tries to build its own otherwise
-# but we have necessary patches in gwenhywfar
-%cmake -DHAVE_GWEN_GTK3=1 -DCOMPILE_GSCHEMAS=OFF -DGNC_DBD_DIR=%{_libdir}/dbd -G Ninja || :
-if ! [ -e build.ninja ]; then
-	cat CMakeFiles/CMakeError.log
-	cat CMakeFiles/CMakeOutput.log
-	exit 1
-fi
-
-%ninja_build
-
-cd ..
-
+%build -a
 pushd gnucash-docs-%{doc_version}
 %cmake
-%make_build
+cmake --build .
 popd
 
-%install
-%ninja_install -C build
-
+%install -a
 pushd gnucash-docs-%{doc_version}
-%make_install -C build
+DESTDIR=%{buildroot} cmake --install build
 popd
 
 rm -f %{buildroot}%{_infodir}/dir
@@ -169,7 +150,8 @@ rm -f %{buildroot}%{_datadir}/glib-2.0/schemas/gschemas.compiled
 %{_libdir}/guile/%{guileapi}/site-ccache/gnucash/
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/accounts
-%{_datadir}/%{name}/chartjs
+%{_datadir}/%{name}/chartjs-2
+%{_datadir}/%{name}/chartjs-4
 %{_datadir}/%{name}/checks
 %{_datadir}/%{name}/gtkbuilder
 %{_datadir}/%{name}/icons
