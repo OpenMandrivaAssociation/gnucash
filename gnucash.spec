@@ -104,7 +104,7 @@ sed -e 's|-Werror||g' -i CMakeLists.txt
 
 %build -a
 pushd gnucash-docs-%{doc_version}
-%cmake
+%cmake -G Ninja
 cmake --build .
 popd
 
