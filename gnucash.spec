@@ -15,8 +15,8 @@
 
 Summary:	Application to keep track of your finances
 Name:		gnucash
-Version:	5.13
-Release:	4
+Version:	5.16
+Release:	1
 License:	GPLv2+
 Group:		Office
 Url:		https://www.gnucash.org/
@@ -71,8 +71,8 @@ Suggests:	perl-Finance-Quote
 Requires:	aqhbci
 
 %patchlist
-gnucash-5.10-icu76.patch
-gnucash-boost-1.89.patch
+# dropped (no longer applies): gnucash-5.10-icu76.patch
+# dropped (no longer applies): gnucash-boost-1.89.patch
 
 %description
 GnuCash is a personal finance manager. A check-book like
