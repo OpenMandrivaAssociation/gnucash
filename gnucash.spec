@@ -73,6 +73,7 @@ Requires:	aqhbci
 %patchlist
 # dropped (no longer applies): gnucash-5.10-icu76.patch
 # dropped (no longer applies): gnucash-boost-1.89.patch
+gnucash-5.16-clang-foreach-section.patch
 
 %description
 GnuCash is a personal finance manager. A check-book like
@@ -100,7 +101,9 @@ This package provides libraries to use gnucash.
 
 %prep -a
 tar xf %{S:4}
-sed -e 's|-Werror||g' -i CMakeLists.txt
+# Clang treats unknown GCC warning groups as errors when -Werror is on.
+# Also strip SWIG's own -Werror (GncAddSwigCommand.cmake).
+find . -name 'CMakeLists.txt' -o -name '*.cmake' | xargs sed -i -e 's|-Werror||g'
 
 %build -a
 pushd gnucash-docs-%{doc_version}

@@ -1,0 +1,29 @@
+--- gnucash-5.16/libgnucash/engine/gnc-optiondb-impl.hpp.omv~
++++ gnucash-5.16/libgnucash/engine/gnc-optiondb-impl.hpp
+@@ -112,18 +112,21 @@
+     GncOptionDB(QofBook* book);
+     ~GncOptionDB() = default;
+ 
+-/* The non-const version can't be redirected to the const one because the
+- * function parameters are incompatible.
+- */
+-    void foreach_section(std::function<void(GncOptionSectionPtr&)> func)
++    /* Templates avoid Clang rejecting lambdas as ambiguous between
++     * std::function<void(GncOptionSectionPtr&)> and
++     * std::function<void(const GncOptionSectionPtr&)> overloads.
++     */
++    template<typename F>
++    void foreach_section(F&& func)
+     {
+         for (auto& section : m_sections)
+             func(section);
+     }
+-    void foreach_section(std::function<void(const GncOptionSectionPtr&)> func) const
++    template<typename F>
++    void foreach_section(F&& func) const
+     {
+         for (auto& section : m_sections)
+             func(section);
+     }
+     size_t num_sections() const noexcept { return m_sections.size(); }
+     bool get_changed() const noexcept { return m_dirty; }
